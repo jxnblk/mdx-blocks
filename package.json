@@ -12,16 +12,13 @@
   "devDependencies": {
     "@emotion/core": "^10.0.7",
     "@emotion/styled": "^10.0.7",
-    "@mdx-js/mdx": "^0.20.3",
-    "@mdx-js/tag": "^0.20.3",
     "emotion-theming": "^10.0.7",
-    "m0": "0.0.5",
+    "m0": "0.0.7",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-system": "^4.0.1"
   },
   "dependencies": {
-    "@mdx-js/loader": "^0.20.3",
     "lodash.merge": "^4.6.1",
     "remark-unwrap-images": "file:../remark-unwrap-images"
   }
