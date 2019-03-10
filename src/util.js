@@ -2,6 +2,8 @@ import { PROP } from './constants'
 
 export const getType = el => el.props[PROP]
 
+export const isHeading = tag => /^h[1-6]/.test(tag)
+
 export const chunkElements = test => elements => {
   const indices = [0]
   const chunks = []

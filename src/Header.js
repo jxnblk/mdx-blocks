@@ -1,6 +1,6 @@
 import React from 'react'
 import Wrapper from './Wrapper'
-import Box from './Box'
+import { Box } from './ui'
 import { themeGet } from 'styled-system'
 
 // move to general purpose components
@@ -55,7 +55,7 @@ export const Header = ({ children, ...props }) =>
   <Wrapper
     children={children}
     components={components}
-    render={elements => (
+    render={elements => console.log(elements) || (
       <Box
         as='header'
         color='background'

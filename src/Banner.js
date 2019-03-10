@@ -1,6 +1,6 @@
 import React from 'react'
 import Wrapper from './Wrapper'
-import Box from './Box'
+import { Box } from './ui'
 import { getType } from './util'
 
 // move to util component
@@ -11,6 +11,7 @@ const getRest = elements => elements.filter(el => !isImage(el))
 const h1 = Box.props({
   as: 'h1',
   fontSize: [4, 5, 6],
+  lineHeight: 1.25,
   css: {}
 })
 
@@ -36,19 +37,10 @@ const p = Box.props({
   fontSize: [2, 3],
 })
 
-const img = Box.props({
-  as: 'img',
-  css: {
-    maxWidth: '100%',
-    height: 'auto',
-  }
-})
-
 const components = {
-  h1,
-  p,
+  // h1,
+  // p,
   a,
-  img,
 }
 
 export const Banner = ({
@@ -60,16 +52,23 @@ export const Banner = ({
     children={children}
     render={elements => (
       <Box
-        p={5}
         {...props}
         css={{
           display: 'flex',
-          alignItems: 'center'
+          flexWrap: 'wrap',
+          alignItems: 'center',
         }}>
-        <Box px={4}>
+          <Box
+            width={[ 1, 1/2 ]}
+            px={4}
+            py={4}>
           {getRest(elements)}
         </Box>
-        <Box css={{ flex: 'none' }}>
+        <Box
+          width={[ 1, 1/2 ]}
+          px={4}
+          py={4}
+          css={{ flex: 'none' }}>
           {getImages(elements)}
         </Box>
       </Box>

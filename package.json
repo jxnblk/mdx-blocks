@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "m0 docs/index.js"
+    "start": "gx docs"
   },
   "keywords": [],
   "author": "Brent Jackson <jxnblk@gmail.com>",
@@ -13,7 +13,7 @@
     "@emotion/core": "^10.0.7",
     "@emotion/styled": "^10.0.7",
     "emotion-theming": "^10.0.7",
-    "m0": "0.0.7",
+    "gx": "^2.0.0-13",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "styled-system": "^4.0.1"

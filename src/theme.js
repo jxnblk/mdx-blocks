@@ -11,7 +11,7 @@ export const colors = {
 }
 
 const maxWidths = {
-  maxWidth: 1024,
+  maxWidth: 1280,
 }
 
 export default {

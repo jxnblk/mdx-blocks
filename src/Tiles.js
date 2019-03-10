@@ -1,14 +1,12 @@
 import React from 'react'
 import Chunk from './Chunk'
-import Box from './Box'
-import Container from './Container'
-
-const test = el => /^h[1-6]/.test(el)
+import { Box, Container } from './ui'
+import { isHeading } from './util'
 
 export const Tiles = props =>
   <Chunk
     {...props}
-    test={test}
+    test={isHeading}
     render={chunks => {
       return (
         <Container>
