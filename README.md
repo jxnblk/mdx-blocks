@@ -2,13 +2,25 @@
 # mdx-blocks
 
 ```mdx
-export { Header as default } from 'mdx-blocks'
+import { Header } from 'mdx-blocks'
+export default Header
 
 # Hello
 
 - [Blog](/blog)
 - [Features](/features)
 - [About](/about)
+```
+
+```mdx
+import { Banner } from 'mdx-blocks'
+export default Banner
+
+# Hello
+
+This is a banner
+
+![](kitten.png)
 ```
 
 ```jsx
@@ -22,40 +34,4 @@ export default props =>
   </>
 ```
 
-## API
-
-- Provider ({ components, theme })
-- Wrapper, Layout, RenderChildren,
-- content blocks
-  - Header
-  - Nav
-  - Banner
-  - Tiles
-  - Cards
-  - Columns
-- low-level
-  - Chunk (by element type)
-  - ExtractImages
-- primitives
-  - Box
-  - Image
-  - Link
-  - Button
-  - Heading
-  - Text
-
----
-
-## Notes
-
-- [ ] Provider via layouts
-- [ ] Header
-- [ ] Banner
-- [ ] Tiles
-- [ ] Cards
-- [ ] Primitives
-  - [x] Box
-  - [ ] Button
-  - [ ] Image
-  - [ ] Heading
-  - [ ] Text
+MIT License
