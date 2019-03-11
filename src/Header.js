@@ -59,7 +59,7 @@ export const Header = ({ children, ...props }) =>
       <Box
         as='header'
         color='background'
-        bg='primary'
+        bg='text'
         {...props}
         css={{
           display: 'flex',

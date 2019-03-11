@@ -29,7 +29,7 @@ const a = Box.props({
     textTransform: 'uppercase',
     letterSpacing: '0.2em',
     fontWeight: 'bold',
-    borderRadius: 16,
+    borderRadius: 4,
   }
 })
 
@@ -59,13 +59,13 @@ export const Banner = ({
           alignItems: 'center',
         }}>
           <Box
-            width={[ 1, 1/2 ]}
+            width={[ 1, 1/2, 1/3 ]}
             px={4}
             py={4}>
           {getRest(elements)}
         </Box>
         <Box
-          width={[ 1, 1/2 ]}
+          width={[ 1, 1/2, 2/3 ]}
           px={4}
           py={4}
           css={{ flex: 'none' }}>
