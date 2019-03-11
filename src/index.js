@@ -10,5 +10,5 @@ export { Header } from './Header'
 export { Banner } from './Banner'
 export { Tiles } from './Tiles'
 export { Cards } from './Cards'
-// export { Columns } from './Columns'
+export { Columns } from './Columns'
 

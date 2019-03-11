@@ -4,6 +4,7 @@ import Header from './header.mdx'
 import Banner from './banner.mdx'
 import Features from './features.mdx'
 import Cards from './cards.mdx'
+import Footer from './footer.mdx'
 
 const theme = {
   colors: {
@@ -17,6 +18,7 @@ export default () =>
     <Banner />
     <Features />
     <Cards />
+    <Footer />
   </Provider>
 
 /*
