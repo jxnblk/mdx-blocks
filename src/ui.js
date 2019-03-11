@@ -44,5 +44,6 @@ Container.defaultProps = {
  * - [ ] Button
  * - [ ] Link
  * - [ ] NavLink
+ * - [ ] BackgroundImage (for aspect ratio)
  *
  */

@@ -3,6 +3,7 @@ import { Provider } from '../src'
 import Header from './header.mdx'
 import Banner from './banner.mdx'
 import Features from './features.mdx'
+import Cards from './cards.mdx'
 
 const theme = {
   colors: {
@@ -15,6 +16,7 @@ export default () =>
     <Header />
     <Banner />
     <Features />
+    <Cards />
   </Provider>
 
 /*
