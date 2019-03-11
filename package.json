@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "gx docs"
+    "start": "gx docs",
+    "build": "gx build docs"
   },
   "keywords": [],
   "author": "Brent Jackson <jxnblk@gmail.com>",

@@ -55,7 +55,7 @@ export const Header = ({ children, ...props }) =>
   <Wrapper
     children={children}
     components={components}
-    render={elements => console.log(elements) || (
+    render={elements => (
       <Box
         as='header'
         color='background'

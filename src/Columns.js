@@ -46,7 +46,7 @@ export const Columns = ({
   <Wrapper
     components={{ ..._components, ...components }}
     children={children}
-    render={elements => console.log(elements) || (
+    render={elements => (
       <Box
         {...props}>
         <Container
