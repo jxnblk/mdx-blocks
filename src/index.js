@@ -12,3 +12,4 @@ export { Tiles } from './Tiles'
 export { Cards } from './Cards'
 export { Columns } from './Columns'
 
+export { SplitBanner } from './SplitBanner'

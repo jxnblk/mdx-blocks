@@ -17,7 +17,6 @@ const ul = Box.props({
 
 const li = Box.props({
   as: 'li',
-  fontWeight: 'bold',
   my: 2,
 })
 

@@ -1,7 +1,14 @@
 import { Banner } from '../src'
-export default Banner
 
-# A better way to build websites
+export default props =>
+  <Banner
+    {...props}
+    py={[4, 5]}
+    color='background'
+    bg='text'
+  />
+
+# A novel, yet practical way to build websites
 
 Write content in MDX.
 Build layouts with blocks.
@@ -9,6 +16,8 @@ Customize with themes.
 
 [Install Now][github]
 
-![Space Image](https://source.unsplash.com/random/1024x512)
+![mountain][]
+
+[mountain]: https://images.unsplash.com/photo-1551978437-6b859030d144?ixlib=rb-1.2.1&q=20&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9
 
 [github]: https://github.com/jxnblk/mdx-blocks

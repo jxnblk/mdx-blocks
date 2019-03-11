@@ -1,6 +1,7 @@
 import React from 'react'
 import { MDXProvider } from '@mdx-js/tag'
 import { ThemeProvider } from 'emotion-theming'
+import styled from '@emotion/styled'
 import merge from 'lodash.merge'
 import defaultTheme from './theme'
 import defaultComponents from './components'

@@ -7,18 +7,11 @@ import { getType } from './util'
 const isImage = el => getType(el) === 'img' || el.type === 'img'
 const getImages = elements => elements.filter(isImage)
 const getRest = elements => elements.filter(el => !isImage(el))
-const getImageSource = elements => {
-  const [ img ] = getImages(elements)
-  if (!img) return
-  return img.props.src
-}
 
 const h1 = Box.props({
   as: 'h1',
   fontSize: [4, 5, 6],
   lineHeight: 1.25,
-  fontWeight: 'bold',
-  my: 3,
   css: {}
 })
 
@@ -42,29 +35,15 @@ const a = Box.props({
 
 const p = Box.props({
   fontSize: [2, 3],
-  m: 0,
 })
 
-const BackgroundImage = ({ src, ...props }) =>
-  <Box
-    {...props}
-    css={{
-      backgroundImage: [
-        'linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.75))',
-        `url(${src})`,
-      ].join(','),
-      backgroundSize: 'cover',
-      backgroundPosition: 'center'
-    }}
-  />
-
 const components = {
-  h1,
-  p,
+  // h1,
+  // p,
   a,
 }
 
-export const Banner = ({
+export const SplitBanner = ({
   children,
   ...props
 }) =>
@@ -72,26 +51,31 @@ export const Banner = ({
     components={components}
     children={children}
     render={elements => (
-      <BackgroundImage {...props}
-        src={getImageSource(elements)}>
+      <Box {...props}>
         <Container>
           <Box
             css={{
               display: 'flex',
               flexWrap: 'wrap',
               alignItems: 'center',
-              justifyContent: 'center',
-              textAlign: 'center'
             }}>
             <Box
+              width={[ 1, 1/2, 2/5 ]}
               px={4}
-              py={[4, 5]}>
+              py={4}>
               {getRest(elements)}
+            </Box>
+            <Box
+              width={[ 1, 1/2, 3/5 ]}
+              px={4}
+              py={4}
+              css={{ flex: 'none' }}>
+              {getImages(elements)}
             </Box>
           </Box>
         </Container>
-      </BackgroundImage>
+      </Box>
     )}
   />
 
-export default Banner
+export default SplitBanner
