@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from '@emotion/styled'
 import merge from 'lodash.merge'
 import system from './themes/system'
 
@@ -16,17 +17,13 @@ export const mergeComponents = (...overrides) => base => {
   const components = { ...base }
   overrides.forEach(obj => {
     for (const key in obj) {
-      const Component = base[key] || key
+      // const Component = base[key] || key
       const override = obj[key]
       if (!override) continue
       if (typeof override === 'function') {
         components[key] = override
       } else if (typeof override === 'object') {
-        components[key] = props =>
-          <Component
-            {...props}
-            css={system(override)}
-          />
+        components[key] = styled(base[key] || key)(system(override))
       }
     }
   })

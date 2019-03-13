@@ -44,7 +44,8 @@ const sx = compose(
 )
 
 export const system = style => props => {
-  const { theme } = props
+  // handle usage in styled components & in css prop
+  const theme = props.theme || props
   const styles = [ ...sx({ theme, ...style }) ]
   for (const key in style) {
     const val = style[key]

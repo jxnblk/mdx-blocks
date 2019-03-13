@@ -7,6 +7,7 @@ export const Bar = ({ children, ...props }) =>
     data-bar
     css={{
       display: 'flex',
+      flexWrap: 'wrap',
       alignItems: 'center',
       justifyContent: 'space-between',
     }}
@@ -19,20 +20,24 @@ export const Bar = ({ children, ...props }) =>
       ul: {
         listStyle: 'none',
         display: 'flex',
+        flexWrap: 'wrap',
         alignItems: 'center',
-        p: 0,
+        m: 0,
+        mx: -3,
         px: 3,
-        my: -3,
       },
       li: {
         display: 'flex',
       },
       a: {
-        p: 2,
+        p: 3,
         color: 'inherit',
         '&:hover': {
           color: 'inherit',
         }
+      },
+      button: {
+        mx: 3,
       }
     }}>
     {children}

@@ -23,6 +23,7 @@ export const theme = {
   ],
   fontWeights: {
     body: 400,
+    bold: 700,
     heading: 700,
   },
   lineHeights: {

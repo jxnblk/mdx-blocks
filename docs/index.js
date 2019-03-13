@@ -24,7 +24,6 @@ import Footer from './footer.mdx'
 
 export default () =>
   <Provider
-    {...future}
   >
     <Helmet>
       <link

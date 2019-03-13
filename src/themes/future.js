@@ -14,6 +14,7 @@ export const theme = {
 
 export const components = {
   button: {
+    fontWeight: 'bold',
     color: 'background',
   }
 }
