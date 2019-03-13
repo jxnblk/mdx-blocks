@@ -94,4 +94,10 @@ export const Banner = ({
     )}
   />
 
+export const banner = defaults => props =>
+  <Banner
+    {...defaults}
+    {...props}
+  />
+
 export default Banner

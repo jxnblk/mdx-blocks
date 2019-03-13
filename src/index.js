@@ -7,7 +7,7 @@ export { Chunk } from './Chunk'
 
 // blocks
 export { Header } from './Header'
-export { Banner } from './Banner'
+export { Banner, banner } from './Banner'
 export { Tiles } from './Tiles'
 export { Cards } from './Cards'
 export { Columns } from './Columns'

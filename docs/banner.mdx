@@ -1,12 +1,10 @@
-import { Banner } from '../src'
+import { banner, Banner } from '../src'
 
-export default props =>
-  <Banner
-    {...props}
-    py={[4, 5]}
-    color='background'
-    bg='text'
-  />
+export default banner({
+  py: [ 4, 5 ],
+  color: 'background',
+  bg: 'text',
+})
 
 # A novel, yet practical way to build websites
 
