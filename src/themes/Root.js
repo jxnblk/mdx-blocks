@@ -6,7 +6,6 @@ import {
   color,
 } from 'styled-system'
 import system from './system'
-import get from 'lodash.get'
 
 export const Root = styled('div')(system({
   fontFamily: 'body',
