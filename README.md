@@ -2,14 +2,18 @@
 # mdx-blocks
 
 ```mdx
-import { Header } from 'mdx-blocks'
-export default Header
+import { Bar } from 'mdx-blocks'
+
+export default props =>
+  <Bar
+    {...props}
+  />
 
 # Hello
 
-- [Blog](/blog)
-- [Features](/features)
-- [About](/about)
+- [Link](/)
+- [Click](/click)
+- [Beep](/beep)
 ```
 
 ```mdx
@@ -18,29 +22,27 @@ export default Banner
 
 # Hello
 
-This is a banner
+This is a banner with a background image.
 
 ![](kitten.png)
 ```
 
 ```jsx
+// Combine blocks together to create a page
+import { Provider } from 'mdx-blocks'
 import Header from './header.mdx'
 import Banner from './banner.mdx'
 
 export default props =>
-  <>
+  <Provider>
     <Header />
     <Banner />
-  </>
+  </Provider>
 ```
 
 ## API
 
 ### MDX Layout Components
-
-Most users
-
--
 
 ### Block Authoring
 
