@@ -1,4 +1,5 @@
 import React from 'react'
+import Block from './Block'
 import {
   Box,
   BackgroundImage,
@@ -13,13 +14,17 @@ export const Banner = ({
   children,
   ...props
 }) =>
-  <BackgroundImage
+  <Block
     {...props}
-    src={getImageSource(children)}>
-    <Container>
+    css={{
+      backgroundImage: `url(${getImageSource(children)})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    }}>
+    <Container px={4}>
       {getNonImages(children)}
     </Container>
-  </BackgroundImage>
+  </Block>
 
 export const banner = defaults => props =>
   <Banner

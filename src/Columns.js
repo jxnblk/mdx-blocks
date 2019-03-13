@@ -1,4 +1,5 @@
 import React from 'react'
+import Block from './Block'
 import {
   Box,
   Container,
@@ -8,8 +9,9 @@ export const Columns = ({
   children,
   ...props
 }) =>
-  <Box {...props}
-    css={{
+  <Block
+    {...props}
+    styles={{
       ul: {
         listStyle: 'none',
         padding: 0,
@@ -30,7 +32,7 @@ export const Columns = ({
         </Box>
       ))}
     </Container>
-  </Box>
+  </Block>
 
 export const columns = defaults => props =>
   <Columns {...defaults} {...props} />

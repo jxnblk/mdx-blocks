@@ -1,37 +1,44 @@
 import React from 'react'
 import { Box } from './ui'
+import Block from './Block'
 
 export const Bar = ({ children, ...props }) =>
-  <Box
+  <Block
     {...props}
     css={{
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      '& > *': {
+    }}
+    styles={{
+      h1: {
+        fontSize: 'inherit',
         margin: 0,
         padding: 16,
       },
-      'h1, h2, h3, h4': {
-        fontSize: 'inherit',
-      },
-      '& > ul': {
+      ul: {
         listStyle: 'none',
         display: 'flex',
         alignItems: 'center',
         padding: 0,
+        paddingRight: 16,
+        paddingLeft: 16,
         marginTop: -16,
         marginBottom: -16,
-        '& > li': {
-          display: 'flex',
-        }
       },
-      'a': {
-        padding: 16,
+      li: {
+        display: 'flex',
+      },
+      a: {
+        padding: 8,
+        color: 'inherit',
+        '&:hover': {
+          color: 'inherit',
+        }
       }
     }}>
     {children}
-  </Box>
+  </Block>
 
 export const bar = defaults => props =>
   <Bar {...defaults} {...props} />

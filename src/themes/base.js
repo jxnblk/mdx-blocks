@@ -11,11 +11,24 @@ export const theme = {
     highlight: '#e3f',
     muted: '#fafafe',
   },
+  space: [
+    0, 4, 8, 16, 32, 64, 128, 256, 512,
+  ],
   fonts: {
     body: 'system-ui, sans-serif',
     heading: 'inherit',
     monospace: 'Menlo, monospace',
   },
+  fontSizes: [
+    12, 14, 16, 20, 24, 32, 48, 64, 96, 128,
+  ],
+  fontWeights: {
+    body: 400,
+    heading: 700,
+  },
+  maxWidths: {
+    container: 1280,
+  }
 }
 
 const Button = styled.a({
@@ -48,6 +61,18 @@ const a = props => {
   }
   return <Link {...props} />
 }
+
+const img = styled.img({
+  maxWidth: '100%',
+  height: 'auto',
+})
+
 export const components = {
   a,
+  img,
+}
+
+export default {
+  theme,
+  components,
 }

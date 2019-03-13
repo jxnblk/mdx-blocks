@@ -1,5 +1,6 @@
 import React from 'react'
 import { Box, Container } from './ui'
+import Block from './Block'
 import { chunkElements } from './util'
 
 const getChunks = chunkElements(el => el === 'img')
@@ -9,7 +10,7 @@ export const Cards = ({
   children,
   ...props
 }) =>
-  <Box {...props}>
+  <Block {...props}>
     <Container
       css={{
         display: 'flex',
@@ -24,7 +25,7 @@ export const Cards = ({
         </Box>
       ))}
     </Container>
-  </Box>
+  </Block>
 
 export const cards = defaults => props =>
   <Cards {...defaults} {...props} />

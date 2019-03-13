@@ -14,6 +14,8 @@ import Header from './header.mdx'
 import Banner from './banner.mdx'
 import Features from './features.mdx'
 import Cards from './cards.mdx'
+import Centered from './centered.mdx'
+import Split from './split.mdx'
 import Footer from './footer.mdx'
 
 export default () =>
@@ -25,6 +27,8 @@ export default () =>
       <Banner />
       <Features />
       <Cards />
+      <Centered />
+      <Split />
       <Footer />
     </Root>
   </Provider>

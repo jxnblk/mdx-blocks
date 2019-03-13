@@ -25,32 +25,11 @@ export const Box = styled('div')({
   lineHeight,
 )
 
-Box.props = (base) => props =>
-  <Box
-    {...base}
-    {...props}
-  />
-
 export const Container = styled(Box)(maxWidth)
 
 Container.defaultProps = {
+  className: 'Container',
   mx: 'auto',
-  maxWidth: 'maxWidth',
+  maxWidth: 'container',
 }
 
-export const BackgroundImage = styled(Box)(props => ({
-  backgroundSize: 'cover',
-  backgroundPosition: 'center',
-  backgroundImage: `url(${props.src})`,
-  // gradient?
-}))
-
-/*
- * - [ ] Heading (h1-h6)
- * - [ ] Text (p, blockquote, etc)
- * - [ ] Button
- * - [ ] Link
- * - [ ] NavLink
- * - [ ] BackgroundImage (for aspect ratio)
- *
- */

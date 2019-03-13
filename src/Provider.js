@@ -2,11 +2,10 @@ import React from 'react'
 import { MDXProvider } from '@mdx-js/tag'
 import { ThemeProvider } from 'emotion-theming'
 import merge from 'lodash.merge'
-import defaultComponents from './components'
-import defaultTheme from './theme'
+import base from './themes/base'
 
-const mergeTheme = theme => merge(defaultTheme, theme)
-const mergeComponents = components => merge(defaultComponents, components)
+const mergeTheme = theme => merge(base.theme, theme)
+const mergeComponents = components => merge(base.components, components)
 
 export const Provider = ({
   children,

@@ -7,5 +7,9 @@ export { Banner, banner } from './Banner'
 export { Tiles, tiles } from './Tiles'
 export { Cards, cards } from './Cards'
 export { Columns, columns } from './Columns'
+export { Split, split } from './Split'
+export { Center, center } from './Center'
 
-// export { SplitBanner } from './SplitBanner'
+// util
+export * from './ui'
+export * from './util'

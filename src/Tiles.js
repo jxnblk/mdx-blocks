@@ -1,4 +1,5 @@
 import React from 'react'
+import Block from './Block'
 import { Box, Container } from './ui'
 import { chunkElements, isHeading } from './util'
 
@@ -9,7 +10,7 @@ export const Tiles = ({
   children,
   ...props
 }) =>
-  <Box {...props}>
+  <Block {...props}>
     <Container
       css={{
         display: 'flex',
@@ -24,7 +25,7 @@ export const Tiles = ({
         </Box>
       ))}
     </Container>
-  </Box>
+  </Block>
 
 export const tiles = defaults => props =>
   <Tiles {...defaults} {...props} />
