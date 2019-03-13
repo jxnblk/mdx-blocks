@@ -1,4 +1,40 @@
+import React from 'react'
+import merge from 'lodash.merge'
+import system from './themes/system'
+
 const PROP = 'mdxType'
+
+const createButtonLink = (Link, Button) => ({
+  title,
+  ...props
+}) =>
+  (title === 'button')
+    ? <Button {...props} />
+    : <Link title={title} {...props} />
+
+export const mergeComponents = (...overrides) => base => {
+  const components = { ...base }
+  overrides.forEach(obj => {
+    for (const key in obj) {
+      const Component = base[key] || key
+      const override = obj[key]
+      if (!override) continue
+      if (typeof override === 'function') {
+        components[key] = override
+      } else if (typeof override === 'object') {
+        components[key] = props =>
+          <Component
+            {...props}
+            css={system(override)}
+          />
+      }
+    }
+  })
+  components.a = createButtonLink(components.a || 'a', components.button || 'button')
+  return components
+}
+
+export const mergeTheme = overrides => base => merge(base, overrides)
 
 export const getType = el => el.props[PROP]
 

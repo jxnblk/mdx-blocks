@@ -1,15 +1,13 @@
-import React from 'react'
 import styled from '@emotion/styled'
 import system from './system'
 
 export const theme = {
   colors: {
-    // make these less cool
     text: 'black',
     background: 'white',
-    primary: '#53f',
-    secondary: '#0c0047',
-    highlight: '#e3f',
+    primary: '#07c',
+    secondary: '#05a',
+    highlight: '#e40',
     muted: '#fafafe',
   },
   space: [
@@ -17,7 +15,7 @@ export const theme = {
   ],
   fonts: {
     body: 'system-ui, sans-serif',
-    heading: '"Avenir Next"',
+    heading: 'inherit',
     monospace: 'Menlo, monospace',
   },
   fontSizes: [

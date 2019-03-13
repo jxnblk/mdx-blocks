@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import styled from '@emotion/styled'
 import {
   fontFamily,
@@ -8,6 +9,8 @@ import { Provider } from '../src'
 import {
   Root,
   base,
+  funk,
+  future,
 } from '../src/themes'
 
 import Header from './header.mdx'
@@ -21,8 +24,14 @@ import Footer from './footer.mdx'
 
 export default () =>
   <Provider
-    theme={base.theme}
-    components={base.components}>
+    {...future}
+  >
+    <Helmet>
+      <link
+        rel='stylesheet'
+        href='https://fonts.googleapis.com/css?family=Poppins400:700:900|Roboto+Mono'
+      />
+    </Helmet>
     <Root>
       <Header />
       <Banner />

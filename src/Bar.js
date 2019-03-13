@@ -12,25 +12,23 @@ export const Bar = ({ children, ...props }) =>
     }}
     styles={{
       h1: {
+        p: 3,
+        m: 0,
         fontSize: 'inherit',
-        margin: 0,
-        padding: 16,
       },
       ul: {
         listStyle: 'none',
         display: 'flex',
         alignItems: 'center',
-        padding: 0,
-        paddingRight: 16,
-        paddingLeft: 16,
-        marginTop: -16,
-        marginBottom: -16,
+        p: 0,
+        px: 3,
+        my: -3,
       },
       li: {
         display: 'flex',
       },
       a: {
-        padding: 8,
+        p: 2,
         color: 'inherit',
         '&:hover': {
           color: 'inherit',

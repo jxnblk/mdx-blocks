@@ -1,25 +1,14 @@
 import React from 'react'
 import { MDXProvider } from '@mdx-js/tag'
 import Box from './Box'
-
-export const mergeComponents = overrides => base => {
-  const components = { ...base }
-  for (const key in overrides) {
-    const Component = base[key] || key
-    components[key] = props =>
-      <Component
-        {...props}
-        css={overrides[key]}
-      />
-  }
-  return components
-}
+import { mergeComponents } from './util'
 
 export const Block = ({
   styles,
+  components,
   ...props
 }) =>
-  <MDXProvider components={mergeComponents(styles)}>
+  <MDXProvider components={mergeComponents(styles, components)}>
     <Box
       data-block
       {...props}
