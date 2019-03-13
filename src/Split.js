@@ -1,6 +1,6 @@
 import React from 'react'
 import Block from './Block'
-import { Box, Container } from './ui'
+import Box from './Box'
 import { getImages, getNonImages } from './util'
 
 export const Split = ({
@@ -11,7 +11,9 @@ export const Split = ({
     {...props}
     css={{}}
     styles={{}}>
-    <Container
+    <Box
+      maxWidth='container'
+      mx='auto'
       css={{
         display: 'flex',
         flexWrap: 'wrap',
@@ -27,7 +29,7 @@ export const Split = ({
         width={[ 1, 1/2 , 3/5 ]}>
         {getImages(children)}
       </Box>
-    </Container>
+    </Box>
   </Block>
 
 export const split = defaults => props =>

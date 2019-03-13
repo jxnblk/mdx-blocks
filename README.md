@@ -34,4 +34,14 @@ export default props =>
   </>
 ```
 
+## API
+
+### MDX Layout Components
+
+Most users
+
+-
+
+### Block Authoring
+
 MIT License

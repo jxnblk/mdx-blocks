@@ -1,6 +1,6 @@
 import React from 'react'
 import { MDXProvider } from '@mdx-js/tag'
-import { Box } from './ui'
+import Box from './Box'
 
 export const mergeComponents = overrides => base => {
   const components = { ...base }

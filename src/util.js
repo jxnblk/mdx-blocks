@@ -1,4 +1,4 @@
-import { PROP } from './constants'
+const PROP = 'mdxType'
 
 export const getType = el => el.props[PROP]
 

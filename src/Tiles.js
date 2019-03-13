@@ -1,6 +1,6 @@
 import React from 'react'
 import Block from './Block'
-import { Box, Container } from './ui'
+import Box from './Box'
 import { chunkElements, isHeading } from './util'
 
 const getChunks = chunkElements(isHeading)
@@ -11,7 +11,9 @@ export const Tiles = ({
   ...props
 }) =>
   <Block {...props}>
-    <Container
+    <Box
+      mx='auto'
+      maxWidth='container'
       css={{
         display: 'flex',
         flexWrap: 'wrap',
@@ -24,7 +26,7 @@ export const Tiles = ({
           {chunk}
         </Box>
       ))}
-    </Container>
+    </Box>
   </Block>
 
 export const tiles = defaults => props =>

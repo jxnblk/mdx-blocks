@@ -1,5 +1,3 @@
-// UI component primitives
-import React from 'react'
 import styled from '@emotion/styled'
 import {
   space,
@@ -19,17 +17,11 @@ export const Box = styled('div')({
   space,
   color,
   width,
+  maxWidth,
   fontSize,
   fontFamily,
   fontWeight,
   lineHeight,
 )
 
-export const Container = styled(Box)(maxWidth)
-
-Container.defaultProps = {
-  className: 'Container',
-  mx: 'auto',
-  maxWidth: 'container',
-}
-
+export default Box

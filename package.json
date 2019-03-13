@@ -11,13 +11,13 @@
   "author": "Brent Jackson <jxnblk@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@emotion/core": "^10.0.7",
-    "@emotion/styled": "^10.0.7",
-    "emotion-theming": "^10.0.7",
-    "gx": "^2.0.0-13",
+    "@emotion/core": "^10.0.9",
+    "@emotion/styled": "^10.0.9",
+    "emotion-theming": "^10.0.9",
+    "gx": "^2.0.0-17",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "styled-system": "^4.0.1"
+    "styled-system": "^4.0.4"
   },
   "dependencies": {
     "lodash.merge": "^4.6.1",

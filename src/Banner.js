@@ -1,10 +1,6 @@
 import React from 'react'
 import Block from './Block'
-import {
-  Box,
-  BackgroundImage,
-  Container
-} from './ui'
+import Box from './Box'
 import {
   getImageSource,
   getNonImages,
@@ -21,9 +17,9 @@ export const Banner = ({
       backgroundSize: 'cover',
       backgroundPosition: 'center',
     }}>
-    <Container px={4}>
+    <Box maxWidth='container' mx='auto' px={4}>
       {getNonImages(children)}
-    </Container>
+    </Box>
   </Block>
 
 export const banner = defaults => props =>

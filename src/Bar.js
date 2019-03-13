@@ -1,5 +1,4 @@
 import React from 'react'
-import { Box } from './ui'
 import Block from './Block'
 
 export const Bar = ({ children, ...props }) =>

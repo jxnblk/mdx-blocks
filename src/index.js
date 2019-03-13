@@ -11,5 +11,5 @@ export { Split, split } from './Split'
 export { Center, center } from './Center'
 
 // util
-export * from './ui'
+export { Box } from './Box'
 export * from './util'

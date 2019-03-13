@@ -1,9 +1,6 @@
 import React from 'react'
 import Block from './Block'
-import {
-  Box,
-  Container,
-} from './ui'
+import Box from './Box'
 
 export const Columns = ({
   children,
@@ -18,7 +15,9 @@ export const Columns = ({
         margin: 0,
       }
     }}>
-    <Container
+    <Box
+      maxWidth='container'
+      mx='auto'
       css={{
         display: 'flex',
         flexWrap: 'wrap',
@@ -31,7 +30,7 @@ export const Columns = ({
           {child}
         </Box>
       ))}
-    </Container>
+    </Box>
   </Block>
 
 export const columns = defaults => props =>
