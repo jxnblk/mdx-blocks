@@ -1,31 +1,32 @@
 import React from 'react'
-import Chunk from './Chunk'
 import { Box, Container } from './ui'
-import { isHeading } from './util'
+import { chunkElements, isHeading } from './util'
 
-export const Tiles = props =>
-  <Chunk
-    {...props}
-    test={isHeading}
-    render={chunks => {
-      return (
-        <Container>
-          <Box
-            css={{
-              display: 'flex',
-              flexWrap: 'wrap'
-            }}>
-            {chunks.map((children, i) => (
-              <Box key={i}
-                width={[1, 1/2]}
-                p={4}>
-                {children}
-              </Box>
-            ))}
-          </Box>
-        </Container>
-      )
-    }}
-  />
+const getChunks = chunkElements(isHeading)
+
+export const Tiles = ({
+  widths = [ 1, 1/2 ],
+  children,
+  ...props
+}) =>
+  <Box {...props}>
+    <Container
+      css={{
+        display: 'flex',
+        flexWrap: 'wrap',
+      }}>
+      {getChunks(children).map((chunk, i) => (
+        <Box
+          key={i}
+          p={4}
+          width={widths}>
+          {chunk}
+        </Box>
+      ))}
+    </Container>
+  </Box>
+
+export const tiles = defaults => props =>
+  <Tiles {...defaults} {...props} />
 
 export default Tiles

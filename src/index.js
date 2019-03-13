@@ -1,15 +1,11 @@
-// core
-export { Wrapper } from './Wrapper'
+// theming
 export { Provider } from './Provider'
 
-// util
-export { Chunk } from './Chunk'
-
 // blocks
-export { Header } from './Header'
+export { Bar, bar } from './Bar'
 export { Banner, banner } from './Banner'
-export { Tiles } from './Tiles'
-export { Cards } from './Cards'
-export { Columns } from './Columns'
+export { Tiles, tiles } from './Tiles'
+export { Cards, cards } from './Cards'
+export { Columns, columns } from './Columns'
 
-export { SplitBanner } from './SplitBanner'
+// export { SplitBanner } from './SplitBanner'

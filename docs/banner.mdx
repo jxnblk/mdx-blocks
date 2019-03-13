@@ -1,9 +1,14 @@
-import { banner, Banner } from '../src'
+import { banner } from '../src'
 
 export default banner({
-  py: [ 4, 5 ],
-  color: 'background',
-  bg: 'text',
+  py: [ 4, 5, 6 ],
+  color: 'white',
+  bg: 'black',
+  css: {
+    h1: {
+      fontSize: 48,
+    }
+  }
 })
 
 # A novel, yet practical way to build websites
@@ -14,8 +19,9 @@ Customize with themes.
 
 [Install Now][github]
 
-![mountain][]
+![fog][]
 
 [mountain]: https://images.unsplash.com/photo-1551978437-6b859030d144?ixlib=rb-1.2.1&q=20&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9
+[fog]: https://images.unsplash.com/photo-1552193037-a0a49447fe2e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9
 
 [github]: https://github.com/jxnblk/mdx-blocks

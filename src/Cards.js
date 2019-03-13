@@ -1,29 +1,32 @@
 import React from 'react'
-import Chunk from './Chunk'
 import { Box, Container } from './ui'
+import { chunkElements } from './util'
 
-export const Cards = props =>
-  <Chunk
-    {...props}
-    test={tag => tag === 'img'}
-    render={chunks => (
-      <Container>
+const getChunks = chunkElements(el => el === 'img')
+
+export const Cards = ({
+  widths = [ 1, 1/2 ],
+  children,
+  ...props
+}) =>
+  <Box {...props}>
+    <Container
+      css={{
+        display: 'flex',
+        flexWrap: 'wrap'
+      }}>
+      {getChunks(children).map((chunk, i) => (
         <Box
-          css={{
-            display: 'flex',
-            flexWrap: 'wrap'
-          }}>
-          {chunks.map((children, i) => (
-            <Box
-              key={i}
-              width={[ 1, 1/2 ]}
-              p={4}>
-              {children}
-            </Box>
-          ))}
+          key={i}
+          width={widths}
+          p={4}>
+          {chunk}
         </Box>
-      </Container>
-    )}
-  />
+      ))}
+    </Container>
+  </Box>
+
+export const cards = defaults => props =>
+  <Cards {...defaults} {...props} />
 
 export default Cards

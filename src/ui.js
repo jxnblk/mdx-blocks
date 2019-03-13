@@ -38,6 +38,13 @@ Container.defaultProps = {
   maxWidth: 'maxWidth',
 }
 
+export const BackgroundImage = styled(Box)(props => ({
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  backgroundImage: `url(${props.src})`,
+  // gradient?
+}))
+
 /*
  * - [ ] Heading (h1-h6)
  * - [ ] Text (p, blockquote, etc)

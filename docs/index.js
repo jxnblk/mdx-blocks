@@ -1,6 +1,9 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { fontFamily } from 'styled-system'
+import {
+  fontFamily,
+  lineHeight
+} from 'styled-system'
 import { Provider } from '../src'
 import Header from './header.mdx'
 import Banner from './banner.mdx'
@@ -8,9 +11,15 @@ import Features from './features.mdx'
 import Cards from './cards.mdx'
 import Footer from './footer.mdx'
 
+import { ThemeProvider } from 'emotion-theming'
+
 const theme = {
   fonts: {
-    sans: '"Avenir Next", system-ui, sans-serif',
+    body: '"Avenir Next", system-ui, sans-serif',
+  },
+  lineHeights: {
+    body: 1.5,
+    heading: 1.25,
   },
   fontWeights: {
     bold: 600,
@@ -22,9 +31,11 @@ const theme = {
 
 const Root = styled('div')(
   fontFamily,
+  lineHeight,
 )
 Root.defaultProps = {
-  fontFamily: 'sans',
+  fontFamily: 'body',
+  lineHeight: 'body',
 }
 
 export default () =>
@@ -38,5 +49,3 @@ export default () =>
     </Root>
   </Provider>
 
-/*
-*/

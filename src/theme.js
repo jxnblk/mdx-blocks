@@ -1,3 +1,4 @@
+// todo: ditch colors
 export const colors = {
   text: '#000',
   background: '#fff',

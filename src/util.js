@@ -19,3 +19,12 @@ export const chunkElements = test => elements => {
   })
   return chunks
 }
+
+export const isImage = el => getType(el) === 'img' || el.type === 'img'
+export const getImages = elements => elements.filter(isImage)
+export const getNonImages = elements => elements.filter(el => !isImage(el))
+export const getImageSource = elements => {
+  const [ img ] = getImages(elements)
+  if (!img) return
+  return img.props.src
+}
