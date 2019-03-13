@@ -4,6 +4,7 @@ import Block from './Block'
 export const Bar = ({ children, ...props }) =>
   <Block
     {...props}
+    data-bar
     css={{
       display: 'flex',
       alignItems: 'center',

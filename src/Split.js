@@ -9,8 +9,7 @@ export const Split = ({
 }) =>
   <Block
     {...props}
-    css={{}}
-    styles={{}}>
+    data-split>
     <Box
       maxWidth='container'
       mx='auto'

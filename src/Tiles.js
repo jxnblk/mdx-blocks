@@ -10,7 +10,7 @@ export const Tiles = ({
   children,
   ...props
 }) =>
-  <Block {...props}>
+  <Block {...props} data-tiles>
     <Box
       mx='auto'
       maxWidth='container'

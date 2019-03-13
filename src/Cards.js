@@ -10,7 +10,7 @@ export const Cards = ({
   children,
   ...props
 }) =>
-  <Block {...props}>
+  <Block {...props} data-cards>
     <Box
       maxWidth='container'
       mx='auto'

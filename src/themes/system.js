@@ -1,16 +1,43 @@
 import {
   space,
   color,
+  fontFamily,
   fontSize,
   fontWeight,
   lineHeight,
   compose,
 } from 'styled-system'
+import omit from 'lodash.omit'
 
-const systemProps = compose(
-  props => props,
+const systemProps = [
+  'm', 'mt', 'mr', 'mb', 'ml', 'mx', 'my',
+  'p', 'pt', 'pr', 'pb', 'pl', 'px', 'py',
+  'margin',
+  'marginTop',
+  'marginRight',
+  'marginBottom',
+  'marginLeft',
+  'padding',
+  'paddingTop',
+  'paddingRight',
+  'paddingBottom',
+  'paddingLeft',
+  'fontFamily',
+  'fontSize',
+  'fontWeight',
+  'lineHeight',
+  'color',
+  'bg',
+  'backgroundColor',
+]
+
+const css = props => omit(props, systemProps)
+
+const sx = compose(
+  css,
   space,
   color,
+  fontFamily,
   fontSize,
   fontWeight,
   lineHeight
@@ -18,7 +45,7 @@ const systemProps = compose(
 
 export const system = style => props => {
   const { theme } = props
-  const styles = [ ...systemProps({ theme, ...style }) ]
+  const styles = [ ...sx({ theme, ...style }) ]
   for (const key in style) {
     const val = style[key]
     if (!val || typeof val !== 'object') continue

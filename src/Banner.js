@@ -7,11 +7,12 @@ import {
 } from './util'
 
 export const Banner = ({
-  children,
+  children = [],
   ...props
 }) =>
   <Block
     {...props}
+    data-banner
     css={{
       backgroundImage: `url(${getImageSource(children)})`,
       backgroundSize: 'cover',

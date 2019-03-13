@@ -5,28 +5,14 @@ import {
   lineHeight,
   color,
 } from 'styled-system'
+import system from './system'
 import get from 'lodash.get'
 
-export const Root = styled('div')(
-  fontFamily,
-  lineHeight,
-  color,
-  props => ({
-    // 'h1, h2, h3, h4, h5, h6': {
-    //   fontFamily: get(props.theme, 'fonts.heading'),
-    //   lineHeight: get(props.theme, 'lineHeights.heading'),
-    // },
-    // a: {
-    //   color: get(props.theme, 'colors.primary'),
-    // }
-  })
-)
-
-Root.defaultProps = {
+export const Root = styled('div')(system({
   fontFamily: 'body',
   lineHeight: 'body',
   color: 'text',
   bg: 'background',
-}
+}))
 
 export default Root

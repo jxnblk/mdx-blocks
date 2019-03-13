@@ -16,6 +16,7 @@ import Features from './features.mdx'
 import Cards from './cards.mdx'
 import Centered from './centered.mdx'
 import Split from './split.mdx'
+import Columns from './columns.mdx'
 import Footer from './footer.mdx'
 
 export default () =>
@@ -29,6 +30,7 @@ export default () =>
       <Cards />
       <Centered />
       <Split />
+      <Columns />
       <Footer />
     </Root>
   </Provider>

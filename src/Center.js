@@ -8,6 +8,7 @@ export const Center = ({
   <Block
     p={4}
     {...props}
+    data-center
     css={{
       textAlign: 'center',
     }}>

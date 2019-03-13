@@ -8,6 +8,7 @@ export const Columns = ({
 }) =>
   <Block
     {...props}
+    data-columns
     styles={{
       ul: {
         listStyle: 'none',

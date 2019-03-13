@@ -20,7 +20,10 @@ export const Block = ({
   ...props
 }) =>
   <MDXProvider components={mergeComponents(styles)}>
-    <Box {...props} />
+    <Box
+      data-block
+      {...props}
+    />
   </MDXProvider>
 
 export default Block
