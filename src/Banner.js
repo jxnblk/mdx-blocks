@@ -20,6 +20,8 @@ export const Banner = ({
   ...props
 }) =>
   <Block
+    pt={5}
+    pb={5}
     {...props}
     data-banner
     css={{
@@ -27,7 +29,10 @@ export const Banner = ({
       backgroundSize: 'cover',
       backgroundPosition: 'center',
     }}>
-    <Box maxWidth='container' mx='auto' px={4}>
+      <Box
+        maxWidth='container'
+        mx='auto'
+        px={4}>
       {getNonImages(props.children)}
     </Box>
   </Block>
