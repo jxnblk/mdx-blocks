@@ -29,7 +29,7 @@
     "emotion-theming": "^10.0.9",
     "lodash.merge": "^4.6.1",
     "lodash.omit": "^4.5.0",
-    "mdx-style": "^1.0.0-4",
+    "mdx-style": "^2.0.0-0",
     "remark-unwrap-images": "^0.2.0",
     "styled-system": "^4.0.4"
   }
