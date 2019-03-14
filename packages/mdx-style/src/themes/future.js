@@ -19,7 +19,9 @@ export const components = {
   }
 }
 
-export default {
+export const future = {
   theme,
   components,
 }
+
+export default future

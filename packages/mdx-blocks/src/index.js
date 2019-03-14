@@ -1,5 +1,3 @@
-import * as themes from './themes'
-
 // core
 export { Provider } from './Provider'
 export { Block } from './Block'
@@ -19,4 +17,5 @@ export { Tiles, tiles } from './Tiles'
 export * from './util'
 
 // themes
-export { themes }
+// import * as themes from './themes'
+// export { themes }

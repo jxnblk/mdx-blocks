@@ -13,7 +13,12 @@ export const theme = {
 export const components = {
 }
 
-export default {
+export const googleFont = 'https://fonts.googleapis.com/css?family=Roboto400:700|Roboto+Mono'
+
+export const roboto = {
   theme,
   components,
+  googleFont,
 }
+
+export default roboto

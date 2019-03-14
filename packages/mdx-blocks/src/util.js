@@ -1,10 +1,11 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import merge from 'lodash.merge'
-import system from './themes/system'
+// import system from './themes/system'
 
 const PROP = 'mdxType'
 
+/* moved to mdx-style
 const createButtonLink = (Link, Button) => ({
   title,
   ...props
@@ -30,8 +31,8 @@ export const mergeComponents = (...overrides) => base => {
   components.a = createButtonLink(components.a || 'a', components.button || 'button')
   return components
 }
-
 export const mergeTheme = overrides => base => merge(base, overrides)
+*/
 
 export const getType = el => el.props[PROP]
 

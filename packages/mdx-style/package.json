@@ -1,0 +1,21 @@
+{
+  "name": "mdx-style",
+  "version": "1.0.0-4",
+  "main": "dist/index.js",
+  "module": "src/index.js",
+  "author": "Brent Jackson <jxnblk@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf node_modules"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.9",
+    "@emotion/styled": "^10.0.9",
+    "@mdx-js/tag": "^1.0.0-alpha.6",
+    "emotion-theming": "^10.0.9",
+    "lodash.merge": "^4.6.1",
+    "lodash.omit": "^4.5.0",
+    "lodash.pick": "^4.4.0",
+    "styled-system": "^4.0.4"
+  }
+}

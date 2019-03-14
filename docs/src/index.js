@@ -6,7 +6,8 @@ import {
   lineHeight
 } from 'styled-system'
 import pkg from '../package.json'
-import { Provider, themes } from '../src'
+import { Provider } from 'mdx-blocks'
+import { themes } from 'mdx-style'
 
 import Header from './header.mdx'
 import Banner from './banner.mdx'

@@ -1,5 +1,4 @@
 export const theme = {
-  googleFont: '',
   colors: {
     text: '#000',
     background: '#fff',
@@ -10,6 +9,7 @@ export const theme = {
   },
   fonts: {
     body: 'Poppins, system-ui, sans-serif',
+    monospace: '"Roboto Mono", monospace',
   },
   fontWeights: {
     heading: 900,
@@ -22,7 +22,12 @@ export const components = {
   }
 }
 
-export default {
+export const googleFont = 'https://fonts.googleapis.com/css?family=Poppins400:700:900|Roboto+Mono'
+
+export const funk = {
   theme,
   components,
+  googleFont,
 }
+
+export default funk

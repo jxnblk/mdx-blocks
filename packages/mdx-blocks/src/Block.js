@@ -1,18 +1,19 @@
 import React from 'react'
-import { MDXProvider } from '@mdx-js/tag'
+import { MDXStyle } from 'mdx-style'
 import Box from './Box'
-import { mergeComponents } from './util'
 
 export const Block = ({
   styles,
   components,
   ...props
 }) =>
-  <MDXProvider components={mergeComponents(styles, components)}>
+  <MDXStyle
+    _components={styles}
+    components={components}>
     <Box
       data-block
       {...props}
     />
-  </MDXProvider>
+  </MDXStyle>
 
 export default Block
