@@ -6,8 +6,10 @@ import {
   getNonImages,
 } from './util'
 
+const { toArray } = React.Children
+
 const background = ({ darken = 0.75, children }) => {
-  const src = getImageSource(children)
+  const src = getImageSource(toArray(children))
   return {
     backgroundImage: [
       `linear-gradient(rgba(0, 0, 0, ${darken / 4}), rgba(0, 0, 0, ${darken}))`,
@@ -33,7 +35,7 @@ export const Banner = ({
         maxWidth='container'
         mx='auto'
         px={4}>
-      {getNonImages(props.children)}
+      {getNonImages(toArray(props.children))}
     </Box>
   </Block>
 

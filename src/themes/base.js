@@ -82,6 +82,19 @@ const h4 = heading('h4', { fontSize: 3 })
 const h5 = heading('h5', { fontSize: 2 })
 const h6 = heading('h6', { fontSize: 1 })
 
+const code = styled.code(system({
+  fontFamily: 'monospace',
+}))
+
+const inlineCode = styled.code(system({
+  fontFamily: 'monospace',
+}))
+
+const pre = styled.pre(system({
+  fontFamily: 'monospace',
+  p: 3,
+}))
+
 export const components = {
   a,
   button,
@@ -92,6 +105,9 @@ export const components = {
   h4,
   h5,
   h6,
+  code,
+  pre,
+  inlineCode,
 }
 
 export default {

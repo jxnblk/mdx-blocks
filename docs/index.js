@@ -6,13 +6,7 @@ import {
   lineHeight
 } from 'styled-system'
 import pkg from '../package.json'
-import { Provider } from '../src'
-import {
-  Root,
-  base,
-  funk,
-  future,
-} from '../src/themes'
+import { Provider, themes } from '../src'
 
 import Header from './header.mdx'
 import Banner from './banner.mdx'
@@ -24,9 +18,7 @@ import Columns from './columns.mdx'
 import Footer from './footer.mdx'
 
 export default () =>
-  <Provider
-    {...funk}
-  >
+  <Provider {...themes.funk}>
     <Helmet>
       <title>MDX Blocks</title>
       <meta
@@ -35,7 +27,7 @@ export default () =>
       />
       <link
         rel='stylesheet'
-        href='https://fonts.googleapis.com/css?family=Poppins400:700:900|Roboto+Mono'
+        href='https://fonts.googleapis.com/css?family=Poppins400:700:900|Roboto+Mono|Roboto400:600:700'
       />
     </Helmet>
     <Header />

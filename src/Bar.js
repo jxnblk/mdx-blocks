@@ -13,7 +13,6 @@ export const Bar = ({ children, ...props }) =>
     }}
     styles={{
       h1: {
-        p: 3,
         m: 0,
         fontSize: 'inherit',
       },
@@ -32,7 +31,9 @@ export const Bar = ({ children, ...props }) =>
         p: 3,
         m: 0,
         color: 'inherit',
+        textDecoration: 'none',
         '&:hover': {
+          textDecoration: 'none',
           color: 'inherit',
         }
       },
