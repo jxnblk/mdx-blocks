@@ -23,14 +23,14 @@ export const Bar = ({ children, ...props }) =>
         flexWrap: 'wrap',
         alignItems: 'center',
         m: 0,
-        mx: -3,
-        px: 3,
+        p: 0,
       },
       li: {
         display: 'flex',
       },
       a: {
         p: 3,
+        m: 0,
         color: 'inherit',
         '&:hover': {
           color: 'inherit',

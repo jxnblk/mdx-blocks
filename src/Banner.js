@@ -6,20 +6,29 @@ import {
   getNonImages,
 } from './util'
 
+const background = ({ darken = 0.75, children }) => {
+  const src = getImageSource(children)
+  return {
+    backgroundImage: [
+      `linear-gradient(rgba(0, 0, 0, ${darken / 4}), rgba(0, 0, 0, ${darken}))`,
+      `url(${src})`,
+    ].join(', ')
+  }
+}
+
 export const Banner = ({
-  children = [],
   ...props
 }) =>
   <Block
     {...props}
     data-banner
     css={{
-      backgroundImage: `url(${getImageSource(children)})`,
+      ...background(props),
       backgroundSize: 'cover',
       backgroundPosition: 'center',
     }}>
     <Box maxWidth='container' mx='auto' px={4}>
-      {getNonImages(children)}
+      {getNonImages(props.children)}
     </Box>
   </Block>
 

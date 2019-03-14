@@ -23,7 +23,7 @@ export const mergeComponents = (...overrides) => base => {
       if (typeof override === 'function') {
         components[key] = override
       } else if (typeof override === 'object') {
-        components[key] = styled(base[key] || key)(system(override))
+        components[key] = styled(components[key] || key)(system(override))
       }
     }
   })
