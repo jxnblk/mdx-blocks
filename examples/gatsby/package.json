@@ -1,0 +1,21 @@
+{
+  "name": "mdx-blocks-gatsby-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Brent Jackson <jxnblk@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "gatsby develop",
+    "build": "gatsby build"
+  },
+  "dependencies": {
+    "@mdx-js/mdx": "^1.0.0-alpha.7",
+    "@mdx-js/tag": "^1.0.0-alpha.6",
+    "gatsby": "^2.1.33",
+    "gatsby-mdx": "^0.5.2",
+    "gatsby-plugin-emotion": "^4.0.6",
+    "mdx-blocks": "^0.0.4",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
+  }
+}

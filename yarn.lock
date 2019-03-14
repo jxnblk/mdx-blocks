@@ -4403,7 +4403,7 @@ gatsby-plugin-compile-es6-packages@^1.0.6:
     "@babel/runtime" "^7.0.0"
     regex-escape "^3.4.8"
 
-gatsby-plugin-emotion@^4.0.4:
+gatsby-plugin-emotion@^4.0.4, gatsby-plugin-emotion@^4.0.6:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-emotion/-/gatsby-plugin-emotion-4.0.6.tgz#5f496df66b2640874fcb073e4f2d8a2a1a4632da"
   integrity sha512-cBCGVdNkULlrYMPsrCVDKrCxiKpZq4PL9n5qzQ538FWmg+XqBhQKWaH8dALwEzoDS5GyHXQy1hI7XHoWmDBJAQ==
@@ -4435,7 +4435,7 @@ gatsby-react-router-scroll@^2.0.5:
     scroll-behavior "^0.9.9"
     warning "^3.0.0"
 
-gatsby@^2.1.18:
+gatsby@^2.1.18, gatsby@^2.1.33:
   version "2.1.33"
   resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.1.33.tgz#56351949ae7da0741b19b8ebbf339087139cde8d"
   integrity sha512-nwb6ja64lvB+Ssnu3WRfAOnelgQdphyOpVD9zTi9qnUBpW4HDcBAfU5+s/CWddQiKU1H8up62539QX6hLZeSlQ==
@@ -6416,6 +6416,19 @@ mdurl@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/mdurl/-/mdurl-1.0.1.tgz#fe85b2ec75a59037f2adfec100fd6c601761152e"
   integrity sha1-/oWy7HWlkDfyrf7BAP1sYBdhFS4=
+
+mdx-blocks@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/mdx-blocks/-/mdx-blocks-0.0.3.tgz#b645007c9afd71a688291d108c08a3d90f503c6d"
+  integrity sha512-zNYU+1cygnsrsJ/AQleKoPLek68bvDmz2lO9KJODRdWkdFr2qbIbSh4ooG9Bzs40VA6VF2tytpsLpb0ewJPU9w==
+  dependencies:
+    "@emotion/core" "^10.0.9"
+    "@emotion/styled" "^10.0.9"
+    emotion-theming "^10.0.9"
+    lodash.merge "^4.6.1"
+    lodash.omit "^4.5.0"
+    remark-unwrap-images "^0.2.0"
+    styled-system "^4.0.4"
 
 meant@^1.0.1:
   version "1.0.1"

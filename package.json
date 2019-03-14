@@ -2,6 +2,7 @@
   "private": true,
   "workspaces": [
     "packages/*",
+    "examples/*",
     "docs"
   ],
   "scripts": {

@@ -13,6 +13,8 @@
   "keywords": [],
   "author": "Brent Jackson <jxnblk@gmail.com>",
   "license": "MIT",
+  "peerDependencies": {
+  },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",
@@ -21,6 +23,9 @@
     "gx": "^2.0.0-17",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "@emotion/core": "^10.0.9",
+    "@emotion/styled": "^10.0.9",
+    "emotion-theming": "^10.0.9",
     "react-helmet": "^5.2.0"
   },
   "dependencies": {
