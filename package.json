@@ -1,7 +1,7 @@
 {
   "name": "mdx-blocks",
   "version": "0.0.3",
-  "description": "",
+  "description": "A wild new way to build websites",
   "main": "dist/index.js",
   "scripts": {
     "prepare": "babel src -d dist",

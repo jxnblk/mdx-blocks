@@ -5,6 +5,7 @@ import {
   fontFamily,
   lineHeight
 } from 'styled-system'
+import pkg from '../package.json'
 import { Provider } from '../src'
 import {
   Root,
@@ -27,20 +28,23 @@ export default () =>
     {...funk}
   >
     <Helmet>
+      <title>MDX Blocks</title>
+      <meta
+        name='description'
+        content={pkg.description}
+      />
       <link
         rel='stylesheet'
         href='https://fonts.googleapis.com/css?family=Poppins400:700:900|Roboto+Mono'
       />
     </Helmet>
-    <Root>
-      <Header />
-      <Banner />
-      <Features />
-      <Cards />
-      <Centered />
-      <Split />
-      <Columns />
-      <Footer />
-    </Root>
+    <Header />
+    <Banner />
+    <Features />
+    <Cards />
+    <Centered />
+    <Split />
+    <Columns />
+    <Footer />
   </Provider>
 

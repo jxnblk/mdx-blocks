@@ -1,4 +1,27 @@
+import { Provider, themes, Box } from '../src'
+import Readme from '../README.md'
+import Header from './header.mdx'
+import Footer from './footer.mdx'
+
+export default props =>
+  <Provider
+    {...props}
+    {...themes.funk}
+  />
+
+<Header />
+
+<Box
+  mx='auto'
+  maxWidth={768}
+  px={4}
+  py={5}
+>
 
 # Docs
 
-This page is a stub
+<Readme />
+
+</Box>
+
+<Footer />
