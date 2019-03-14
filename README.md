@@ -10,6 +10,8 @@ https://mdx-blocks.netlify.com
 npm i mdx-blocks
 ```
 
+Import and use MDX Blocks as layout components
+
 ```mdx
 import { Bar } from 'mdx-blocks'
 
@@ -24,6 +26,8 @@ export default props =>
 - [Click](/click)
 - [Beep](/beep)
 ```
+
+Create a block for each section of a page
 
 ```mdx
 import { Banner } from 'mdx-blocks'
@@ -49,9 +53,11 @@ export default props =>
   </Provider>
 ```
 
+---
+
 ## API
 
-### Provider
+## Provider
 
 ```js
 import { Provider } from 'mdx-blocks'
@@ -75,7 +81,7 @@ The base theme and components can be overridden with the `theme` and `components
 - `theme` a [styled-system][] theme object with MDX Blocks specific [colors](#theming)
 - `components` an object of React components *or* style objects that correspond to MDX elements
 
-### MDX Layout Components
+## MDX Layout Components
 
 The mdx-block layout components can be used as layouts for short MDX documents that are meant for small sections of an entire page.
 Each layout component should be used as the default export in an MDX file.
@@ -105,14 +111,35 @@ export default props =>
 
 All layout components accept the following props:
 
-- `components` (object) an object of React components or style objects for MDX elements
+- `components` (object) an object of React components or style objects for child MDX elements
 - `color` (string) foreground text color
 - `bg` (string) background color
 - [styled-system][] space props:
   `m`, `mt`, `mr`, `mb`, `ml`, `mx`, `my`,
   `p`, `pt`, `pr`, `pb`, `pl`, `px`, `py`,
 
-#### Bar
+**Component Styles**
+
+The `components` object passed to a block can completely replace a child component or adjust the styles of the component within the block's context.
+When passing a style object, certain properties are passed to [styled-system][] to allow for theme-based values to be used.
+
+```mdx
+import { Banner } from 'mdx-blocks'
+export default props =>
+  <Banner
+    {...props}
+    components={{
+      h1: {
+        fontSize: [5, 6],
+        color: 'primary',
+      }
+    }}
+  />
+
+# Customized Heading
+```
+
+### Bar
 
 A horizontal bar layout, intended for navigation bars or toolbars
 
@@ -128,7 +155,7 @@ export default Bar
 - [Button](# 'button')
 ```
 
-#### Banner
+### Banner
 
 A large banner that uses images as a background image
 
@@ -141,7 +168,7 @@ export default Banner
 # Banner
 ```
 
-#### Cards
+### Cards
 
 Splits content by images to create a tiled card layout
 
@@ -162,7 +189,7 @@ A puppy
 A bunny
 ```
 
-#### Center
+### Center
 
 Center-aligns text
 
@@ -173,7 +200,7 @@ export default Center
 # Centered Heading
 ```
 
-#### Columns
+### Columns
 
 Creates columns based on the number of child elements
 
@@ -191,7 +218,7 @@ export default Columns
 - Gamma
 ```
 
-#### Split
+### Split
 
 Splits content into two columns, with an image on the right
 
@@ -206,7 +233,7 @@ This content will be on the left
 ![](right-side.jpg)
 ```
 
-#### Tiles
+### Tiles
 
 Splits content at headings, creating a tiled layout
 
@@ -223,7 +250,7 @@ Hello
 Beep
 ```
 
-### Theming
+## Theming
 
 The overall look and feel of MDX Blocks can be customized by passing a theme to the `Provider` component.
 Theming consists of a [styled-system][] `theme` object and a `components` object to control what components are rendered from MDX elements.
@@ -241,7 +268,7 @@ export default props =>
   </Provider>
 ```
 
-#### Theme Object
+### Theme Object
 
 ```
 {
@@ -275,7 +302,7 @@ export default props =>
 }
 ```
 
-#### Components Object
+### Components Object
 
 TK
 
@@ -289,7 +316,7 @@ TK
 - `h5`
 - `h6`
 
-### Block Authoring
+## Block Authoring
 
 TK
 
