@@ -34,7 +34,8 @@ export const Banner = ({
       <Box
         maxWidth='container'
         mx='auto'
-        px={4}>
+        pl={4}
+        pr={4}>
       {getNonImages(toArray(props.children))}
     </Box>
   </Block>

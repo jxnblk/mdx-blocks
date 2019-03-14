@@ -5,13 +5,23 @@ import Readme from 'mdx-blocks/README.md'
 export default props => {
   return (
     <MDXStyle
+      as='main'
       px={4}
-      py={5}
+      mx='auto'
+      css={{
+        maxWidth: 768,
+      }}
       components={{
         h1: {
           fontSize: [6, 7, 8, 9],
           m: 0,
-          color: 'highlight',
+        },
+        a: {
+          color: 'tomato',
+        },
+        pre: {
+          color: 'white',
+          bg: 'primary',
         }
       }}
     >
@@ -20,3 +30,15 @@ export default props => {
   )
   // <pre children={JSON.stringify(theme.fontSizes, null, 2)} />
 }
+
+/*
+  <div
+    css={{
+      display: 'grid',
+      gridTemplateColumns: `1fr minmax(auto, 40em) 1fr`,
+    }}>
+      <div />
+      <main />
+      <div />
+  </div>
+*/

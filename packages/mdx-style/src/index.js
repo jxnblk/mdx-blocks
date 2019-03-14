@@ -190,7 +190,7 @@ const createButtonLink = (Link, Button) => ({
     ? <Button {...props} />
     : <Link title={title} {...props} />
 
-export const mergeComponents = (...overrides) => base => {
+export const mergeComponents = (...overrides) => (base = {}) => {
   const components = {
     ...defaults.components,
     ...base
