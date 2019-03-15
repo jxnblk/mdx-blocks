@@ -5,7 +5,8 @@
     "docs"
   ],
   "scripts": {
-    "clean": "yarn workspaces run clean && rm -rf node_modules",
-    "start": "yarn workspace mdx-blocks-docs start"
+    "clean": "yarn workspaces run clean",
+    "start": "yarn workspace mdx-blocks-docs start",
+    "test": "yarn workspace mdx-style test"
   }
 }

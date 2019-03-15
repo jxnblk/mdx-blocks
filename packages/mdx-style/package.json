@@ -2,7 +2,6 @@
   "name": "mdx-style",
   "version": "2.0.0-0",
   "main": "dist/index.js",
-  "module": "src/index.js",
   "author": "Brent Jackson <jxnblk@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -21,6 +20,10 @@
     "styled-system": "^4.0.4"
   },
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
     "jest": "^24.5.0",
     "jest-emotion": "^10.0.9",
     "react-test-renderer": "^16.8.4",

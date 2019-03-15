@@ -11,9 +11,7 @@
   },
   "dependencies": {
     "gx": "^2.0.0-17",
-    "mdx-blocks": "^0.0.3",
-    "mdx-style": "2.0.0-0",
-    "mdx-style": "2.0.0-0",
+    "mdx-blocks": "^0.0.4",
     "react-helmet": "^5.2.0"
   }
 }
