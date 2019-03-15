@@ -1,0 +1,26 @@
+import Readme from 'mdx-blocks/README.md'
+import { Block } from 'mdx-blocks'
+import Header from './header.mdx'
+import Footer from './footer.mdx'
+
+<Header />
+
+<Block
+  {...props}
+  maxWidth={768}
+  mx='auto'
+  px={4}
+  py={5}
+  components={{
+    pre: {
+      color: 'white',
+      bg: 'primary',
+    },
+    inlineCode: {
+      color: 'highlight',
+    },
+  }}>
+  <Readme />
+</Block>
+
+<Footer />
