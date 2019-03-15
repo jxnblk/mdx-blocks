@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "gx": "^2.0.0-17",
-    "mdx-blocks": "file:../packages/mdx-blocks",
+    "mdx-blocks": "latest",
     "react-helmet": "^5.2.0"
   }
 }

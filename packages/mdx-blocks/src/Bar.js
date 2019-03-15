@@ -2,7 +2,6 @@ import React from 'react'
 import Block from './Block'
 
 export const Bar = ({ children, ...props }) =>
-  console.log(children) ||
   <Block
     {...props}
     data-bar
