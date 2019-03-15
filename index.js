@@ -534,19 +534,38 @@ export const tiles = toFunction(Tiles)
 
 // primitive components
 // can be used outside of an MDX file
-export const Primitive = ({
+// but still retain the theme styles
+export const Styled = React.forwardRef(({
   as = 'p',
   ...props
-}) => {
+}, ref) => {
   const components = useMDXComponents()
   const tag = components[as] || 'div'
-  return React.createElement(tag, props)
-}
+  return React.createElement(tag, {
+    ...props,
+    ref
+  })
+})
 
-Primitive.h1 = props => <Primitive as='h1' {...props} />
-Primitive.h2 = props => <Primitive as='h2' {...props} />
-Primitive.img = props => <Primitive as='img' {...props} />
+export const tags = [
+  'h1',
+  'h2',
+  'h3',
+  'h4',
+  'h5',
+  'h6',
+  'p',
+  'ul',
+  'ol',
+  'li',
+  'img',
+  'a',
+  'blockquote',
+]
+
+tags.forEach(tag => {
+  Styled[tag] = React.forwardRef((props, ref) => <Styled ref={ref} as={tag} {...props} />)
+})
 
 // todo
 // - [ ] MediaObjects layout
-// - [ ] primitives
