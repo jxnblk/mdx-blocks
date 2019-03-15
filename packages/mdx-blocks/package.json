@@ -1,6 +1,6 @@
 {
   "name": "mdx-blocks",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A wild new way to build websites",
   "main": "dist/index.js",
   "scripts": {

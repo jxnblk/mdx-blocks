@@ -1,12 +1,5 @@
 {
   "private": true,
-  "workspaces": [
-    "packages/*",
-    "docs"
-  ],
   "scripts": {
-    "clean": "yarn workspaces run clean",
-    "start": "yarn workspace mdx-blocks-docs start",
-    "test": "yarn workspace mdx-style test"
   }
 }
