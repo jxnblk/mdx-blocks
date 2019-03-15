@@ -106,6 +106,8 @@ export const theme = {
 }
 
 // base components
+const div = styled.div(system())
+
 const a = styled.a(system({
   color: 'primary',
   textDecoration: 'none',
@@ -115,7 +117,7 @@ const a = styled.a(system({
   }
 }))
 
-// <a title='button'> is converted to this component
+// <a title='button'> or [](/ 'button') is converted to this component
 const button = styled.a(system({
   display: 'inline-block',
   alignSelf: 'center',
@@ -164,6 +166,7 @@ const pre = styled.pre(system({
 }))
 
 export const components = {
+  div,
   a,
   button,
   img,
@@ -536,7 +539,7 @@ export const tiles = toFunction(Tiles)
 // can be used outside of an MDX file
 // but still retain the theme styles
 export const Styled = React.forwardRef(({
-  as = 'p',
+  as = 'div',
   ...props
 }, ref) => {
   const components = useMDXComponents()
@@ -561,6 +564,11 @@ export const tags = [
   'img',
   'a',
   'blockquote',
+  'pre',
+  'code',
+  'inlineCode',
+  'button',
+  'div',
 ]
 
 tags.forEach(tag => {
