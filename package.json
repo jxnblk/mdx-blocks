@@ -1,12 +1,32 @@
 {
-  "private": true,
-  "workspaces": [
-    "packages/*",
-    "docs"
-  ],
+  "name": "mdx-blocks",
+  "version": "0.0.8",
+  "main": "index.js",
   "scripts": {
-    "clean": "yarn workspaces run clean",
-    "start": "yarn workspace mdx-blocks-docs start",
-    "test": "yarn workspace mdx-style test"
+    "prepare": "babel index.js -o dist.js",
+    "start": "gx docs",
+    "build": "gx build docs"
+  },
+  "author": "Brent Jackson <jxnblk@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@emotion/core": "^10.0.9",
+    "@emotion/styled": "^10.0.9",
+    "@mdx-js/tag": "^1.0.0-alpha.6",
+    "emotion-theming": "^10.0.9",
+    "lodash.merge": "^4.6.1",
+    "lodash.omit": "^4.5.0",
+    "lodash.pick": "^4.4.0",
+    "lodash.upperfirst": "^4.3.1",
+    "styled-system": "^4.0.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "gx": "^2.0.0-17",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
   }
 }

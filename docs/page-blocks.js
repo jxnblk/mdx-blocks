@@ -49,7 +49,7 @@ const split = children => {
   return blocks
 }
 
-export default ({
+export const PageBlocks = ({
   children,
   ...props
 }) => {
@@ -60,3 +60,5 @@ export default ({
     </>
   )
 }
+
+export default () => <pre>placeholder</pre>
