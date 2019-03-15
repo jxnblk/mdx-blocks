@@ -49,7 +49,7 @@ const split = children => {
   return blocks
 }
 
-export default ({
+export const PageBlocks = ({
   children,
   ...props
 }) => {

@@ -1,2 +1,0 @@
-
-# MDX Style
