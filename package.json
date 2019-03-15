@@ -1,7 +1,7 @@
 {
   "name": "mdx-blocks",
   "version": "0.0.8",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "prepare": "babel index.js -o dist.js",
     "start": "gx docs",
