@@ -20,6 +20,7 @@ import * as themes from './themes'
 export { themes }
 
 const systemProps = [
+  'theme',
   'm', 'mt', 'mr', 'mb', 'ml', 'mx', 'my',
   'p', 'pt', 'pr', 'pb', 'pl', 'px', 'py',
   'margin',
@@ -53,6 +54,8 @@ const sx = compose(
   lineHeight
 )
 
+const filterEmpty = n => Object.keys(n).length > 0
+
 export const system = style => props => {
   // handle usage in styled components & in css prop
   const theme = props.theme || props
@@ -65,7 +68,7 @@ export const system = style => props => {
       [key]: system(val)(props)
     })
   }
-  return styles.filter(Boolean)
+  return styles.filter(Boolean).filter(filterEmpty)
 }
 
 // base theme
