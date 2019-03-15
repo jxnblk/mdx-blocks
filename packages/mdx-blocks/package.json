@@ -3,12 +3,10 @@
   "version": "0.0.4",
   "description": "A wild new way to build websites",
   "main": "dist/index.js",
-  "module": "src/index.js",
   "scripts": {
     "prepare": "babel src -d dist",
     "clean": "rm -rf node_modules",
-    "start": "gx docs",
-    "build": "gx build docs"
+    "test": "echo \"todo\""
   },
   "keywords": [],
   "author": "Brent Jackson <jxnblk@gmail.com>",
@@ -18,19 +16,12 @@
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
-    "gx": "^2.0.0-17",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "react-helmet": "^5.2.0"
+    "@emotion/babel-preset-css-prop": "^10.0.9"
   },
   "dependencies": {
     "@emotion/core": "^10.0.9",
     "@emotion/styled": "^10.0.9",
-    "emotion-theming": "^10.0.9",
-    "lodash.merge": "^4.6.1",
-    "lodash.omit": "^4.5.0",
     "mdx-style": "^2.0.0-0",
-    "remark-unwrap-images": "^0.2.0",
     "styled-system": "^4.0.4"
   }
 }

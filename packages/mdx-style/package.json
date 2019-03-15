@@ -2,11 +2,12 @@
   "name": "mdx-style",
   "version": "2.0.0-0",
   "main": "dist/index.js",
-  "module": "src/index.js",
   "author": "Brent Jackson <jxnblk@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "clean": "rm -rf node_modules"
+    "prepare": "babel src -d dist",
+    "clean": "rm -rf node_modules",
+    "test": "jest"
   },
   "dependencies": {
     "@emotion/core": "^10.0.9",
@@ -17,5 +18,21 @@
     "lodash.omit": "^4.5.0",
     "lodash.pick": "^4.4.0",
     "styled-system": "^4.0.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "jest": "^24.5.0",
+    "jest-emotion": "^10.0.9",
+    "react-test-renderer": "^16.8.4",
+    "react-testing-library": "^6.0.0"
+  },
+  "jest": {
+    "coverageReporters": [
+      "lcov",
+      "html"
+    ]
   }
 }
