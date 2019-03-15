@@ -60,3 +60,5 @@ export const PageBlocks = ({
     </>
   )
 }
+
+export default () => <pre>placeholder</pre>

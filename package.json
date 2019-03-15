@@ -5,7 +5,7 @@
   "scripts": {
     "prepare": "babel index.js -o dist.js",
     "start": "gx docs",
-    "build": "gx build docs"
+    "build": "npx gx build docs"
   },
   "author": "Brent Jackson <jxnblk@gmail.com>",
   "license": "MIT",
