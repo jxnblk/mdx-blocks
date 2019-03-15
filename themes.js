@@ -60,3 +60,8 @@ export const roboto = {
   googleFont: 'https://fonts.googleapis.com/css?family=Roboto400:700|Roboto+Mono',
 }
 
+export default {
+  funk,
+  future,
+  roboto,
+}

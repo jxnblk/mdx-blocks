@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { ThemeProvider } from 'emotion-theming'
-import { MDXProvider } from '@mdx-js/tag'
+import { MDXProvider, useMDXComponents } from '@mdx-js/tag'
 import {
   space,
   color,
@@ -16,9 +16,6 @@ import {
 import merge from 'lodash.merge'
 import omit from 'lodash.omit'
 import pick from 'lodash.pick'
-
-// import * as themes from './themes'
-// export { themes }
 
 const systemProps = [
   'theme',
@@ -206,6 +203,14 @@ export const mergeComponents = (...overrides) => (base = {}) => {
       if (!override) continue
       if (typeof override === 'function') {
         components[key] = override
+      } else if (override.$$typeof && override.render) {
+        // handle React.forwardRef elements
+        if (components[key].withComponent) {
+          components[key] = components[key].withComponent(override)
+        } else {
+          components[key] = styled(override)(system({}))
+        }
+
       } else if (typeof override === 'object') {
         components[key] = styled(components[key] || key)(system(override))
       }
@@ -527,7 +532,21 @@ export const columns = toFunction(Columns)
 export const split = toFunction(Split)
 export const tiles = toFunction(Tiles)
 
-// MediaObjects
-// themes
-// import * as themes from './themes'
-// export { themes }
+// primitive components
+// can be used outside of an MDX file
+export const Primitive = ({
+  as = 'p',
+  ...props
+}) => {
+  const components = useMDXComponents()
+  const tag = components[as] || 'div'
+  return React.createElement(tag, props)
+}
+
+Primitive.h1 = props => <Primitive as='h1' {...props} />
+Primitive.h2 = props => <Primitive as='h2' {...props} />
+Primitive.img = props => <Primitive as='img' {...props} />
+
+// todo
+// - [ ] MediaObjects layout
+// - [ ] primitives
