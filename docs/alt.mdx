@@ -1,0 +1,79 @@
+import {
+  BlocksProvider,
+  Bar,
+  Banner,
+  Tiles
+} from '../index'
+
+export default props =>
+  <BlocksProvider {...props} />
+
+<Bar>
+
+# [MDX Blocks](/)
+
+- [Home](/)
+- [GitHub](https://github.com/jxnblk/mdx-blocks)
+- [Get Started](https://github.com/jxnblk/mdx-blocks 'button')
+
+</Bar>
+
+<Banner
+  color='white'
+  bg='black'
+  pt={[7, null, 8]}
+  pb={[4, 5]}
+  pl={[ 4, 4, '25%', '50%' ]}
+  components={{
+    h1: {
+      'em': {
+        fontStyle: 'normal',
+        color: 'highlight',
+      }
+    },
+    p: {
+      fontSize: 3,
+      m: 0,
+      mb: 1,
+    },
+    button: {
+      fontSize: 3,
+      my: 3,
+      px: 4,
+      py: 3,
+      fontWeight: 'bold',
+    }
+  }}
+>
+
+# A wild *new way* to build websites
+
+Write content in MDX.
+Build layouts with blocks.
+Customize with themes.
+
+[It's Showtime!](https://github.com/jxnblk/mdx-blocks 'button')
+
+![showtime][]
+
+
+[showtime]: https://images.unsplash.com/photo-1531503406248-d63777b50f39?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9
+
+</Banner>
+
+<Tiles>
+
+## Simple
+Write content in markdown. Import and use React components
+
+## Effortless
+Responsive layouts, without writing a single media query
+
+## Themeable
+Control the look and feel with built-in presets or custom styles
+
+
+## Swappable
+Change the styling of an MDX block without touching the content
+
+</Tiles>
