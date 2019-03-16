@@ -1,7 +1,8 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { BlocksProvider } from '../index'
+import { MDXStyle, BlocksProvider } from '../index'
 import pkg from '../package.json'
+import Link from './link'
 import Header from './header.mdx'
 import Banner from './banner.mdx'
 import Intro from './intro.mdx'
@@ -15,28 +16,35 @@ import Footer from './footer.mdx'
 
 import { funk as theme } from '../themes'
 
+const components = {
+  a: Link,
+  button: Link,
+}
+
 export default props =>
-  <BlocksProvider
-    {...theme}>
-    <Helmet>
-      <title>MDX Blocks</title>
-      <meta
-        name='description'
-        content={pkg.description}
-      />
-      <link
-        rel='stylesheet'
-        href='https://fonts.googleapis.com/css?family=Poppins400:700:900|Roboto+Mono|Roboto400:600:700'
-      />
-    </Helmet>
-    <Header />
-    <Banner />
-    <Intro />
-    <Features />
-    <Cards />
-    <Centered />
-    <Split />
-    <Columns />
-    <PhotoCredits />
-    <Footer />
-  </BlocksProvider>
+  // todo: figure out a better way to provide Link etc
+  <MDXStyle components={components}>
+    <BlocksProvider {...theme}>
+      <Helmet>
+        <title>MDX Blocks</title>
+        <meta
+          name='description'
+          content={pkg.description}
+        />
+        <link
+          rel='stylesheet'
+          href='https://fonts.googleapis.com/css?family=Poppins400:700:900|Roboto+Mono|Roboto400:600:700'
+        />
+      </Helmet>
+      <Header />
+      <Banner />
+      <Intro />
+      <Features />
+      <Cards />
+      <Centered />
+      <Split />
+      <Columns />
+      <PhotoCredits />
+      <Footer />
+    </BlocksProvider>
+  </MDXStyle>

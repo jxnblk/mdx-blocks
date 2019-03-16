@@ -204,22 +204,19 @@ export const mergeComponents = (...overrides) => (base = {}) => {
       // const Component = base[key] || key
       const override = obj[key]
       if (!override) continue
-      if (typeof override === 'function') {
-        components[key] = override
-      } else if (override.$$typeof && override.render) {
-        // handle React.forwardRef elements
+      if (typeof override === 'function'
+        || override.$$typeof && override.render) {
         if (components[key].withComponent) {
           components[key] = components[key].withComponent(override)
         } else {
           components[key] = styled(override)(system({}))
         }
-
       } else if (typeof override === 'object') {
         components[key] = styled(components[key] || key)(system(override))
       }
     }
   })
-  components.a = createButtonLink(components.a || 'a', components.button || 'button')
+  components.a = createButtonLink(components.a || 'a', components.button || components.a || 'a')
   return components
 }
 
