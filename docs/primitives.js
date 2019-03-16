@@ -2,7 +2,7 @@ import React from 'react'
 import {
   BlocksProvider,
   Styled,
-} from '..'
+} from '../index'
 import themes from '../themes'
 import Features from './features.mdx'
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { BlocksProvider } from '..'
+import { BlocksProvider } from '../index'
 import pkg from '../package.json'
 import Header from './header.mdx'
 import Banner from './banner.mdx'

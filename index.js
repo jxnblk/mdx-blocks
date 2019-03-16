@@ -224,7 +224,7 @@ export const mergeComponents = (...overrides) => (base = {}) => {
 }
 
 export const mergeThemes = (...overrides) => base =>
-  merge(defaults.theme, base, ...overrides)
+  merge({}, defaults.theme, base, ...overrides)
 
 
 export const Root = styled.div(system({
