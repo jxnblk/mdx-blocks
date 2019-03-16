@@ -76,6 +76,28 @@ Prop | Type | Description
 `mx` | number or array | Margin left and right
 `my` | number or array | Margin top and bottom
 
+### Child Elements
+
+Each layout component expects certain child elements to be present, but remains loose in interpretation.
+For example, the `Banner` component expects one image to be present, but will still render without an image and will only use the first image as the background image.
+Because of this approach, some results may seem unexpected, so please [open an issue][issues] if you have any questions.
+
+[issues]: https://github.com/jxnblk/mdx-blocks/issues/
+
+### Buttons
+
+Since markdown does not include syntax to distinguish between inline text links and links that are styled to look like buttons,
+MDX Blocks uses a convention (or hack) to specify links that are styled as buttons.
+To render a link that styled like a button, add a `button` title attribute to any link.
+
+```mdx
+// renders a text link
+[Beep](/beep)
+
+// renders a link styled as a button
+[Boop](/boop 'button')
+```
+
 ## Bar
 
 The `Bar` aligns elements horizontally and is meant for navbars and toolbars.
@@ -133,7 +155,21 @@ Meow
 Woof
 ```
 
-- TK: `widths` prop
+The `Cards` component accepts a `widths` prop to alter the width of the cards responsively.
+It uses the Styled System array value convention to apply width values with a mobile-first responsive approach.
+
+```mdx
+import { Cards } from 'mdx-blocks'
+export default props =>
+  <Cards
+    {...props}
+    widths={[
+      1,    // 100% width for the smallest viewport widths
+      1/2,  // 50% width at the first breakpoint
+      1/4   // 25% width at the next breakpoint
+    ]}
+  />
+```
 
 ## Center
 
@@ -208,7 +244,16 @@ Meow meow
 Woof woof
 ```
 
-- TK `widths` prop
+Similar to the `Cards` component, the `Tiles` component accepts a `widths` prop to alter the width of the cards responsively.
+
+```mdx
+import { Tiles } from 'mdx-blocks'
+export default props =>
+  <Tiles
+    {...props}
+    widths={[ 1, 1/2, 1/4 ]}
+  />
+```
 
 ## Functional API
 

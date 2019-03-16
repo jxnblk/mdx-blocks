@@ -5,6 +5,6 @@ import isAbsoluteURL from 'is-absolute-url'
 export const Link = ({ href, ...props }) =>
   isAbsoluteURL(href || '')
     ? <a href={href} {...props} />
-    : <GatsbyLink to={href} {...props} />
+    : <GatsbyLink to={href} {...props} activeClassName='active' />
 
 export default () => false

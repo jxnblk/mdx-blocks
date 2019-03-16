@@ -1,6 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { MDXStyle, BlocksProvider } from '../index'
+import { BlocksProvider } from '../index'
 import pkg from '../package.json'
 import { Link } from './components'
 import Header from './header.mdx'
@@ -22,29 +22,28 @@ const components = {
 }
 
 export default props =>
-  // todo: figure out a better way to provide Link etc
-  <MDXStyle components={components}>
-    <BlocksProvider {...theme}>
-      <Helmet>
-        <title>MDX Blocks</title>
-        <meta
-          name='description'
-          content={pkg.description}
-        />
-        <link
-          rel='stylesheet'
-          href='https://fonts.googleapis.com/css?family=Poppins400:700:900|Roboto+Mono|Roboto400:600:700'
-        />
-      </Helmet>
-      <Header />
-      <Banner />
-      <Intro />
-      <Features />
-      <Cards />
-      <Centered />
-      <Split />
-      <Columns />
-      <PhotoCredits />
-      <Footer />
-    </BlocksProvider>
-  </MDXStyle>
+  <BlocksProvider
+    baseComponents={components}
+    {...theme}>
+    <Helmet>
+      <title>MDX Blocks</title>
+      <meta
+        name='description'
+        content={pkg.description}
+      />
+      <link
+        rel='stylesheet'
+        href='https://fonts.googleapis.com/css?family=Poppins400:700:900|Roboto+Mono|Roboto400:600:700'
+      />
+    </Helmet>
+    <Header />
+    <Banner />
+    <Intro />
+    <Features />
+    <Cards />
+    <Centered />
+    <Split />
+    <Columns />
+    <PhotoCredits />
+    <Footer />
+  </BlocksProvider>

@@ -181,7 +181,7 @@ export const components = {
   inlineCode,
 }
 
-export const defaults = {
+const defaults = {
   components,
   theme
 }
@@ -233,13 +233,13 @@ export const Root = styled.div(system({
 
 export const MDXStyle = ({
   components = {},
-  styles = {},
+  baseComponents = {},
   theme = {},
   ...props
 }) => {
   return (
     <ThemeProvider theme={mergeThemes(theme)}>
-      <MDXProvider components={mergeComponents(styles, components)}>
+      <MDXProvider components={mergeComponents(baseComponents, components)}>
         {props.children}
       </MDXProvider>
     </ThemeProvider>
@@ -247,12 +247,14 @@ export const MDXStyle = ({
 }
 
 export const BlocksProvider = ({
+  baseComponents,
   components,
   theme,
   ...props
 }) =>
   <MDXStyle
     theme={theme}
+    baseComponents={baseComponents}
     components={components}>
     <Root {...props} />
   </MDXStyle>
@@ -273,12 +275,12 @@ export const Box = styled.div({
 )
 
 export const Block = ({
-  styles, // what should this be named?
+  baseComponents, // what should this be named?
   components,
   ...props
 }) =>
   <MDXStyle
-    styles={styles}
+    baseComponents={baseComponents}
     components={components}>
     <Box
       data-block
@@ -330,7 +332,7 @@ export const Bar = ({ children, ...props }) =>
       alignItems: 'center',
       justifyContent: 'space-between',
     }}
-    styles={{
+    baseComponents={{
       h1: {
         m: 0,
         fontSize: 'inherit',
@@ -439,7 +441,7 @@ export const Columns = ({
   <Block
     {...props}
     data-columns
-    styles={{
+    baseComponents={{
       ul: {
         listStyle: 'none',
         padding: 0,
@@ -531,14 +533,6 @@ Center.props = toFunction(Center)
 Columns.props = toFunction(Columns)
 Split.props = toFunction(Split)
 Tiles.props = toFunction(Tiles)
-
-// export const bar = toFunction(Bar)
-// export const banner = toFunction(Banner)
-// export const cards = toFunction(Cards)
-// export const center = toFunction(Center)
-// export const columns = toFunction(Columns)
-// export const split = toFunction(Split)
-// export const tiles = toFunction(Tiles)
 
 // primitive components
 // can be used outside of an MDX file

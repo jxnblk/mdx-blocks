@@ -28,64 +28,75 @@ const theme = {
 }
 
 export default props =>
-  <MDXStyle
-    components={{
+  <BlocksProvider
+    baseComponents={{
       a: Link,
       button: Link,
-    }}>
-    <BlocksProvider {...theme}>
+    }}
+    {...theme}>
+    <Box
+      css={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+      }}>
+      <Header />
       <Box
         css={{
-          minHeight: '100vh',
+          flex: '1 1 auto',
           display: 'flex',
-          flexDirection: 'column',
+          [mobile]: {
+            flexDirection: 'column',
+          }
         }}>
-        <Header />
-        <Box
+        <Block
+          width={[ 1, 256, 320 ]}
+          py={3}
+          bg='muted'
           css={{
-            flex: '1 1 auto',
-            display: 'flex',
-            [mobile]: {
-              flexDirection: 'column',
-            }
-          }}>
-          <Block
-            width={[ 1, 256, 320 ]}
-            py={3}
-            bg='muted'
-            css={{
-            }}
-            styles={{
-              ul: {
-                listStyle: 'none',
-                m: 0,
-                p: 0,
-                [mobile]: {
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                }
-              },
-              a: {
-                display: 'block',
-                fontWeight: 'bold',
-                px: 3,
-                py: [1, 2],
+            position: 'sticky',
+            top: 0,
+            maxHeight: '100vh',
+            overflowY: 'auto',
+            WebkitOverflowScrolling: 'touch',
+          }}
+          baseComponents={{
+            ul: {
+              listStyle: 'none',
+              m: 0,
+              p: 0,
+              [mobile]: {
+                display: 'flex',
+                flexWrap: 'wrap',
               }
-            }}
-          >
-            <Sidebar />
-          </Block>
-          <Box width={1}>
-            <Box
-              mx='auto'
-              px={4}
-              py={4}
-              maxWidth={768}>
-              {props.children}
-            </Box>
+            },
+            a: {
+              display: 'block',
+              fontWeight: 'bold',
+              px: 3,
+              py: [1, 2],
+              '&:hover': {
+                textDecoration: 'none',
+                color: 'black',
+              },
+              '&.active': {
+                color: 'highlight',
+              }
+            }
+          }}
+        >
+          <Sidebar />
+        </Block>
+        <Box width={1}>
+          <Box
+            mx='auto'
+            px={4}
+            py={4}
+            maxWidth={768}>
+            {props.children}
           </Box>
         </Box>
-        <Footer />
       </Box>
-    </BlocksProvider>
-  </MDXStyle>
+      <Footer />
+    </Box>
+  </BlocksProvider>

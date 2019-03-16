@@ -49,7 +49,52 @@ theme: {
 The `components` object corresponds to MDX components and can include either React components or CSS style objects with Styled System props.
 See the [themes docs](/docs/themes) for more info.
 
-`TK list of component tags`
+The `components` object consists of the following keys:
 
+- `h1`
+- `h2`
+- `h3`
+- `h4`
+- `h5`
+- `h6`
+- `p`
+- `img`
+- `a`
+- `ul`
+- `ol`
+- `li`
+- `blockquote`
+- `pre`
+- `code`
+- `inlineCode`
+- `hr`
+- `button` - special mdx-blocks component for links styled as buttons. See the [button docs][]
+
+Each CSS style object can be a mix of standard CSS syntax and the following Styled System props,
+which pick up values from the theme and can accept array values for mobile-first responsive styles:
+
+- `fontFamily`
+- `fontSize`
+- `fontWeight`
+- `lineHeight`
+- `color`
+- `bg`
+- `m`
+- `mt`
+- `mr`
+- `mb`
+- `ml`
+- `mx`
+- `my`
+- `p`
+- `pt`
+- `pr`
+- `pb`
+- `pl`
+- `px`
+- `py`
+
+
+[button docs]: #!
 [themes module]: https://github.com/jxnblk/mdx-blocks/blob/master/themes.js
 [theme specification]: https://styled-system.com/theme-specification
