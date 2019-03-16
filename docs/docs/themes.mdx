@@ -1,0 +1,38 @@
+import Layout from './layout'
+export default Layout
+
+# Themes
+
+Themes in MDX Blocks consist of two parts:
+
+- `theme` (object) a [Styled System theme][theme specification] object
+- `components` (object) an object of MDX components or component styles, with support for [Styled System][] props
+
+MDX Blocks includes a base theme by default that has minimal styling and is intended to make customization easier.
+
+## Built-in Themes
+
+MDX Blocks includes several built-in themes that can be used out-of-the-box or serve as a basis for custom themes.
+To use a built-in theme, import it and pass it to the `BlocksProvider` component at the root of your application.
+
+```jsx
+import React from 'react'
+import { BlocksProvider } from 'mdx-blocks'
+import { future } from 'mdx-blocks/themes'
+
+export default props =>
+  <BlocksProvider {...future}>
+    {props.children}
+  </BlocksProvider>
+```
+
+Currently the following themes are available:
+
+- `funk`
+- `future`
+- `roboto`
+
+## Components Object
+
+[styled system]: https://styled-system.com
+[theme specification]: https://styled-system.com/theme-specification

@@ -2,3 +2,16 @@ import Layout from './layout'
 export default Layout
 
 # BlocksProvider
+
+The `BlocksProvider` component provides the base context for theming and MDX components.
+All MDX Blocks should be nested within the `BlocksProvider`, and it can live at the root level of a page or an entire application.
+Internally, it uses MDX's `MDXProvider` and Emotion's `ThemeProvider`.
+
+## Props
+
+- `theme` (object) Emotion theme object that conforms to Styled System's [Theme Specification]
+- `components` (object) Object of MDX components or style objects for components
+
+See the [Themes docs](/docs/themes) for more information.
+
+[theme specification]: https://styled-system.com/theme-specification

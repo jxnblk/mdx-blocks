@@ -205,7 +205,7 @@ export const mergeComponents = (...overrides) => (base = {}) => {
       const override = obj[key]
       if (!override) continue
       if (typeof override === 'function'
-        || override.$$typeof && override.render) {
+        || (override.$$typeof && override.render)) {
         if (components[key].withComponent) {
           components[key] = components[key].withComponent(override)
         } else {
@@ -524,13 +524,21 @@ export const Tiles = ({
 const toFunction = Component => defaults => props =>
   <Component {...defaults} {...props} />
 
-export const bar = toFunction(Bar)
-export const banner = toFunction(Banner)
-export const cards = toFunction(Cards)
-export const center = toFunction(Center)
-export const columns = toFunction(Columns)
-export const split = toFunction(Split)
-export const tiles = toFunction(Tiles)
+Bar.props = toFunction(Bar)
+Banner.props = toFunction(Banner)
+Cards.props = toFunction(Cards)
+Center.props = toFunction(Center)
+Columns.props = toFunction(Columns)
+Split.props = toFunction(Split)
+Tiles.props = toFunction(Tiles)
+
+// export const bar = toFunction(Bar)
+// export const banner = toFunction(Banner)
+// export const cards = toFunction(Cards)
+// export const center = toFunction(Center)
+// export const columns = toFunction(Columns)
+// export const split = toFunction(Split)
+// export const tiles = toFunction(Tiles)
 
 // primitive components
 // can be used outside of an MDX file
