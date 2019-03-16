@@ -6,7 +6,7 @@ import {
   Box
 } from '../../index'
 import themes from '../../themes'
-import Link from '../link'
+import { Link } from '../components'
 import Sidebar from './sidebar.mdx'
 import Header from '../header.mdx'
 import Footer from '../footer.mdx'
