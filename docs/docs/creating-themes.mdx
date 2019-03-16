@@ -1,0 +1,55 @@
+import Layout from './layout'
+export default Layout
+
+# Creating Themes
+
+To completely customize the look and feel of MDX Blocks, you can create custom themes that define colors, typographic styles, base components, and more.
+See the [themes module][] for examples to get started.
+
+## Theme Object
+
+The `theme` object follows Styled System's [Theme Specification][].
+All scale objects within the theme can be extended to include additional values.
+
+```js
+// theme shape
+theme: {
+  colors: {
+    text,
+    background,
+    primary,
+    secondary,
+    highlight,
+    muted,
+  },
+  space: [],
+  fonts: {
+    body,
+    heading,
+    monospace,
+  },
+  fontSizes: [],
+  fontWeights: {
+    body,
+    bold,
+    heading,
+  },
+  lineHeights: {
+    body,
+    heading,
+  },
+  maxWidths: {
+    container,
+  }
+}
+```
+
+## Components Object
+
+The `components` object corresponds to MDX components and can include either React components or CSS style objects with Styled System props.
+See the [themes docs](/docs/themes) for more info.
+
+`TK list of component tags`
+
+[themes module]: https://github.com/jxnblk/mdx-blocks/blob/master/themes.js
+[theme specification]: https://styled-system.com/theme-specification
