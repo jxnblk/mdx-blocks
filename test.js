@@ -49,7 +49,7 @@ describe('system', () => {
 })
 
 describe('mergeComponents', () => {
-  test.todo('merges components', () => {
+  test.skip('merges components', () => {
     // figure out how to accurately test this with emotion styled
     const a = {
       h1: styled.h1({ color: 'tomato' }),
