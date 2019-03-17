@@ -192,8 +192,11 @@ const createButtonLink = (Link, Button) => ({
   ...props
 }) =>
   (title === 'button')
-    ? <Button {...props} />
-    : <Link title={title} {...props} />
+    ? React.createElement(Button, props)
+    : React.createElement(Link, {
+      title,
+      ...props
+    })
 
 export const mergeComponents = (...overrides) => (base = {}) => {
   const components = {
@@ -238,12 +241,12 @@ export const MDXStyle = ({
   theme = {},
   ...props
 }) => {
-  return (
-    <ThemeProvider theme={mergeThemes(theme)}>
-      <MDXProvider components={mergeComponents(baseComponents, components)}>
-        {props.children}
-      </MDXProvider>
-    </ThemeProvider>
+  return React.createElement(ThemeProvider, { theme: mergeThemes(theme) },
+    React.createElement(MDXProvider, {
+      components: mergeComponents(baseComponents, components)
+    },
+      props.children
+    )
   )
 }
 
@@ -253,12 +256,13 @@ export const BlocksProvider = ({
   theme,
   ...props
 }) =>
-  <MDXStyle
-    theme={theme}
-    baseComponents={baseComponents}
-    components={components}>
-    <Root {...props} />
-  </MDXStyle>
+  React.createElement(MDXStyle, {
+    theme,
+    baseComponents,
+    components,
+  },
+    React.createElement(Root, props)
+  )
 
 export const Box = styled.div({
   boxSizing: 'border-box',
@@ -280,14 +284,15 @@ export const Block = ({
   components,
   ...props
 }) =>
-  <MDXStyle
-    baseComponents={baseComponents}
-    components={components}>
-    <Box
-      data-block
-      {...props}
-    />
-  </MDXStyle>
+  React.createElement(MDXStyle, {
+    baseComponents,
+    components,
+  },
+    React.createElement(Box, {
+      'data-block': true,
+      ...props
+    })
+  )
 
 // util
 const PROP = 'mdxType'
@@ -324,16 +329,16 @@ export const chunkElements = test => children => {
 
 // layout components
 export const Bar = ({ children, ...props }) =>
-  <Block
-    {...props}
-    data-bar
-    css={{
+  React.createElement(Block, {
+    ...props,
+    'data-bar': true,
+    css: {
       display: 'flex',
       flexWrap: 'wrap',
       alignItems: 'center',
       justifyContent: 'space-between',
-    }}
-    baseComponents={{
+    },
+    baseComponents: {
       h1: {
         m: 0,
         fontSize: 'inherit',
@@ -362,9 +367,10 @@ export const Bar = ({ children, ...props }) =>
       button: {
         mx: 3,
       }
-    }}>
-    {children}
-  </Block>
+    }
+  },
+    children
+  )
 
 const getBannerBackground = ({
   darken = 0.75,
@@ -380,24 +386,26 @@ const getBannerBackground = ({
 }
 
 export const Banner = (props) =>
-  <Block
-    pt={5}
-    pb={5}
-    {...props}
-    data-banner
-    css={{
+  React.createElement(Block, {
+    pt: 5,
+    pb: 5,
+    ...props,
+    'data-banner': true,
+    css: {
       ...getBannerBackground(props),
       backgroundSize: 'cover',
       backgroundPosition: 'center',
-    }}>
-    <Box
-      maxWidth='container'
-      mx='auto'
-      pl={4}
-      pr={4}>
-      {getNonImages(props.children)}
-    </Box>
-  </Block>
+    },
+  },
+    React.createElement(Box, {
+      maxWidth: 'container',
+      mx: 'auto',
+      pl: 4,
+      pr: 4,
+    },
+      getNonImages(props.children)
+    )
+  )
 
 export const Cards = ({
   widths = [ 1, 1/2 ],
@@ -405,35 +413,35 @@ export const Cards = ({
   tag = 'img',
   ...props
 }) =>
-  <Block {...props} data-cards>
-    <Box
-      maxWidth='container'
-      mx='auto'
-      css={{
+  React.createElement(Block, { ...props, 'data-cards': true },
+    React.createElement(Box, {
+      maxWidth: 'container',
+      mx: 'auto',
+      css: {
         display: 'flex',
-        flexWrap: 'wrap'
-      }}>
-      {chunkElements(el => el === tag)(children)
-        .map((chunk, i) => (
-        <Box
-          key={i}
-          width={widths}
-          p={4}>
-          {chunk}
-        </Box>
-      ))}
-    </Box>
-  </Block>
+        flexWrap: 'wrap',
+      }
+    },
+      chunkElements(el => el === tag)(children)
+        .map((chunk, i) => React.createElement(Box, {
+          key: i,
+          width: widths,
+          p: 4,
+        },
+          chunk
+        ))
+    )
+  )
 
 export const Center = (props) =>
-  <Block
-    p={4}
-    {...props}
-    data-center
-    css={{
+  React.createElement(Block, {
+    p: 4,
+    ...props,
+    'data-center': true,
+    css: {
       textAlign: 'center',
-    }}
-  />
+    }
+  })
 
 export const Columns = ({
   children,
@@ -540,7 +548,7 @@ export const Tiles = ({
 
 // functional layouts
 const toFunction = Component => defaults => props =>
-  <Component {...defaults} {...props} />
+  React.createElement(Component, { ...defaults, ...props })
 
 Bar.props = toFunction(Bar)
 Banner.props = toFunction(Banner)
@@ -588,7 +596,7 @@ export const tags = [
 ]
 
 tags.forEach(tag => {
-  Styled[tag] = React.forwardRef((props, ref) => <Styled ref={ref} as={tag} {...props} />)
+  Styled[tag] = React.forwardRef((props, ref) => React.createElement(Styled, { ref, as: tag, ...props }))
 })
 
 // todo
