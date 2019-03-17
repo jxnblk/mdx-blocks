@@ -7,6 +7,7 @@ colors.yellow = '#ec0'
 
 export default props =>
   <Rects
+    frame
     width={1280}
     height={720}
     value={[

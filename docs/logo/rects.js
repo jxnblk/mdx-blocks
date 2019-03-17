@@ -2,11 +2,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { space, color } from 'styled-system'
 
-const Svg = styled('svg')({
-  maxWidth: '100%',
-  height: 'auto',
-  overflow: 'hidden',
-},
+const Svg = styled('svg')({},
   space
 )
 
@@ -28,7 +24,7 @@ export const Rects = ({
     <rect
       width={width/height * 24}
       height={24}
-      fill='none'
+      fill='white'
       stroke='lightgray'
       vectorEffect='non-scaling-stroke'
       strokeWidth={1}
