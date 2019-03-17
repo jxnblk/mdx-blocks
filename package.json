@@ -5,7 +5,9 @@
   "scripts": {
     "prepare": "babel index.js -o dist.js",
     "start": "gx docs",
-    "build": "gx build docs",
+    "build": "gx build docs && cp static/* public/",
+    "icon": "npx repng docs/logo/icon.js -w 256 -h 256 -d static -f icon.png",
+    "card": "npx repng docs/logo/card.js -w 1280 -h 720 -d static -f card.png",
     "test": "jest"
   },
   "author": "Brent Jackson <jxnblk@gmail.com>",
