@@ -11,6 +11,7 @@ import Cards from './cards.mdx'
 import Centered from './centered.mdx'
 import Split from './split.mdx'
 import Columns from './columns.mdx'
+import CodeExample from './code-example.mdx'
 import PhotoCredits from './photo-credits.mdx'
 import Footer from './footer.mdx'
 
@@ -43,6 +44,7 @@ export default props =>
     <Cards />
     <Centered />
     <Split />
+    <CodeExample />
     <Columns />
     <PhotoCredits />
     <Footer />

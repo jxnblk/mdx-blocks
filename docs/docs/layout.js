@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  MDXStyle,
   BlocksProvider,
   Block,
   Box

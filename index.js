@@ -163,6 +163,7 @@ const inlineCode = styled.code(system({
 const pre = styled.pre(system({
   fontFamily: 'monospace',
   p: 3,
+  overflowX: 'auto',
 }))
 
 export const components = {
@@ -467,6 +468,21 @@ export const Columns = ({
     </Box>
   </Block>
 
+export const Content = ({
+  children,
+  ...props
+}) =>
+  <Block
+    data-content
+    {...props}>
+    <Box
+      maxWidth='container'
+      mx='auto'
+      p={4}>
+      {children}
+    </Box>
+  </Block>
+
 export const Split = ({
   children,
   // flip,
@@ -531,6 +547,7 @@ Banner.props = toFunction(Banner)
 Cards.props = toFunction(Cards)
 Center.props = toFunction(Center)
 Columns.props = toFunction(Columns)
+Content.props = toFunction(Content)
 Split.props = toFunction(Split)
 Tiles.props = toFunction(Tiles)
 

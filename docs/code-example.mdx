@@ -1,0 +1,33 @@
+import { Content } from '../index'
+export default Content.props({
+  components: {
+    pre: {
+      color: 'primary',
+      bg: 'muted',
+    }
+  }
+})
+
+## What it looks like
+
+```mdx
+import { Banner } from 'mdx-blocks'
+export default props =>
+  <Banner
+    {...props}
+    color='white'
+    bg='black'
+    components={{
+      h1: {
+        fontSize: [4, 5, 6],
+        color: 'primary'
+      }
+    }}
+  />
+
+![background](background.jpg)
+
+# Hello
+
+This is a banner component
+```
