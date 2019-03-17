@@ -28,7 +28,7 @@
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "babel-jest": "^24.5.0",
-    "gx": "^2.0.0-17",
+    "gx": "^2.0.0-18",
     "jest": "^24.5.0",
     "jest-emotion": "^10.0.9",
     "react": "^16.8.4",
