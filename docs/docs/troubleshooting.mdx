@@ -1,0 +1,19 @@
+import Layout from './layout'
+export default Layout
+
+# Troubleshooting
+
+## Styles are appearing as expected
+
+This can happen when multiple instances of Emotion or MDX are installed in a project, use `npm ls` to see which dependencies are installed in a given project and make sure there is only one version listed for each library's packages.
+
+## MDX Issues
+
+This library is *only* compatible with MDX v1, which is currently in alpha.
+
+## Images aren't appearing where expected
+
+Due to how MDX Blocks parses child elements, the [remark-unwrap-images][] plugin is required.
+Be sure this plugin is provided as an option in your MDX configuration.
+
+[remark-unwrap-images]: https://www.npmjs.com/package/remark-unwrap-images

@@ -163,6 +163,7 @@ const inlineCode = styled.code(system({
 const pre = styled.pre(system({
   fontFamily: 'monospace',
   p: 3,
+  overflowX: 'auto',
 }))
 
 export const components = {
@@ -181,7 +182,7 @@ export const components = {
   inlineCode,
 }
 
-export const defaults = {
+const defaults = {
   components,
   theme
 }
@@ -204,22 +205,19 @@ export const mergeComponents = (...overrides) => (base = {}) => {
       // const Component = base[key] || key
       const override = obj[key]
       if (!override) continue
-      if (typeof override === 'function') {
-        components[key] = override
-      } else if (override.$$typeof && override.render) {
-        // handle React.forwardRef elements
+      if (typeof override === 'function'
+        || (override.$$typeof && override.render)) {
         if (components[key].withComponent) {
           components[key] = components[key].withComponent(override)
         } else {
           components[key] = styled(override)(system({}))
         }
-
       } else if (typeof override === 'object') {
         components[key] = styled(components[key] || key)(system(override))
       }
     }
   })
-  components.a = createButtonLink(components.a || 'a', components.button || 'button')
+  components.a = createButtonLink(components.a || 'a', components.button || components.a || 'a')
   return components
 }
 
@@ -236,13 +234,13 @@ export const Root = styled.div(system({
 
 export const MDXStyle = ({
   components = {},
-  styles = {},
+  baseComponents = {},
   theme = {},
   ...props
 }) => {
   return (
     <ThemeProvider theme={mergeThemes(theme)}>
-      <MDXProvider components={mergeComponents(styles, components)}>
+      <MDXProvider components={mergeComponents(baseComponents, components)}>
         {props.children}
       </MDXProvider>
     </ThemeProvider>
@@ -250,12 +248,14 @@ export const MDXStyle = ({
 }
 
 export const BlocksProvider = ({
+  baseComponents,
   components,
   theme,
   ...props
 }) =>
   <MDXStyle
     theme={theme}
+    baseComponents={baseComponents}
     components={components}>
     <Root {...props} />
   </MDXStyle>
@@ -276,12 +276,12 @@ export const Box = styled.div({
 )
 
 export const Block = ({
-  styles, // what should this be named?
+  baseComponents, // what should this be named?
   components,
   ...props
 }) =>
   <MDXStyle
-    styles={styles}
+    baseComponents={baseComponents}
     components={components}>
     <Box
       data-block
@@ -333,7 +333,7 @@ export const Bar = ({ children, ...props }) =>
       alignItems: 'center',
       justifyContent: 'space-between',
     }}
-    styles={{
+    baseComponents={{
       h1: {
         m: 0,
         fontSize: 'inherit',
@@ -442,7 +442,7 @@ export const Columns = ({
   <Block
     {...props}
     data-columns
-    styles={{
+    baseComponents={{
       ul: {
         listStyle: 'none',
         padding: 0,
@@ -465,6 +465,21 @@ export const Columns = ({
           {child}
         </Box>
       ))}
+    </Box>
+  </Block>
+
+export const Content = ({
+  children,
+  ...props
+}) =>
+  <Block
+    data-content
+    {...props}>
+    <Box
+      maxWidth='container'
+      mx='auto'
+      p={4}>
+      {children}
     </Box>
   </Block>
 
@@ -527,13 +542,14 @@ export const Tiles = ({
 const toFunction = Component => defaults => props =>
   <Component {...defaults} {...props} />
 
-export const bar = toFunction(Bar)
-export const banner = toFunction(Banner)
-export const cards = toFunction(Cards)
-export const center = toFunction(Center)
-export const columns = toFunction(Columns)
-export const split = toFunction(Split)
-export const tiles = toFunction(Tiles)
+Bar.props = toFunction(Bar)
+Banner.props = toFunction(Banner)
+Cards.props = toFunction(Cards)
+Center.props = toFunction(Center)
+Columns.props = toFunction(Columns)
+Content.props = toFunction(Content)
+Split.props = toFunction(Split)
+Tiles.props = toFunction(Tiles)
 
 // primitive components
 // can be used outside of an MDX file

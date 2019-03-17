@@ -1,0 +1,28 @@
+import Layout from './layout'
+export default Layout
+
+# Primitive Components
+
+Primitive components can be used outside of MDX to create components that use the same styling context as other MDX blocks.
+This can be useful when creating more complex reusable UI components that can be customized using the same theming and components context that MDX Blocks uses.
+Import the `Styled` component to create components that use MDX Blocks theming.
+
+```jsx
+// example primitives usage
+import React from 'react'
+import {
+  BlocksProvider,
+  Styled
+} from 'mdx-blocks'
+import { future } from 'mdx-blocks/themes'
+
+export default props =>
+  <BlocksProvider {...future}>
+    <Styled.h1
+      fontSize={3}
+      color='primary'
+      my={4}>
+      Hello
+    </Styled.h1>
+  </BlocksProvider>
+```

@@ -1,0 +1,111 @@
+
+# Getting Started
+
+MDX Blocks requires [Emotion][] and [MDX][] v1.
+Be sure your build setup supports these libraries.
+
+```sh
+npm i mdx-blocks
+```
+
+This library also requires the [remark-unwrap-images][] plugin for certain image-manipulation features - be sure to include this in your MDX setup.
+
+[remark-unwrap-images]: https://www.npmjs.com/package/remark-unwrap-images
+
+In an MDX file, import and use MDX Blocks layout components to style the content.
+
+```mdx
+// example banner.mdx
+import { Banner } from 'mdx-blocks'
+export default Banner
+
+![kitten](kitten.jpg)
+
+# Meow
+
+The kitten image should be set as a background image
+```
+
+In another React component, import the MDX component and wrap it with the `BlocksProvider` component.
+
+```js
+import React from 'react'
+import { BlocksProvider } from 'mdx-blocks'
+import Banner from './banner.mdx'
+
+export default props =>
+  <BlocksProvider>
+    <Banner />
+  </BlocksProvider>
+```
+
+Create more blocks for each section of the page.
+
+```mdx
+// example cards.mdx
+import { Cards } from 'mdx-blocks'
+export default Cards
+
+![kitten](kitten.jpg)
+
+## Meow
+
+![puppy](puppy.jpg)
+
+## Woof
+
+![bunny](bunny.jpg)
+
+## Hop
+```
+
+Customize the layout components with props, changing the MDX export to an inline function.
+Each layout component accepts [Styled System][] style props for color, typography, and basic layout.
+
+```mdx
+// example banner.mdx
+import { Banner } from 'mdx-blocks'
+export default props =>
+  <Banner
+    {...props}
+    color='white'
+    bg='black'
+    px={4}
+    py={[5, 6]}
+  />
+```
+
+Layout components also accept a `css` prop and a custom `components` prop to override styles contextually within a block. The component style objects also accept Styled System props.
+
+```mdx
+// example banner.mdx
+import { Banner } from 'mdx-blocks'
+export default props =>
+  <Banner
+    {...props}
+    css={{
+      // styles for the block's root element
+      boxShadow: '0 2px 32px rgba(0, 0, 0, .5)',
+    }}
+  />
+```
+
+```mdx
+// example banner.mdx
+import { Banner } from 'mdx-blocks'
+export default props =>
+  <Banner
+    {...props}
+    components={{
+      // styles for child elements
+      h1: {
+        color: 'primary',
+      }
+    }}
+  />
+```
+
+
+[emotion]: https://emotion.sh
+[mdx]: https://mdxjs.com
+[styled system]: https://styled-system.com

@@ -1,0 +1,282 @@
+import Layout from './layout'
+export default Layout
+
+# Layouts
+
+MDX Blocks comes with several built-in layout components to style
+content written in MDX as sections of a page.
+To apply a layout component to an MDX block, export the component as the `default` from the MDX file.
+
+```mdx
+// example mdx file
+import { Bar } from 'mdx-blocks'
+export default props =>
+  <Bar
+    {...props}
+  />
+```
+
+## Props
+
+Layout components can accept props to contextually style the root element or child elements within the block.
+Many styles are powered by [Styled System][], which allows you to pick up values from the global theme.
+
+```mdx
+// example
+import { Banner } from 'mdx-blocks'
+export default props =>
+  <Banner
+    {...props}
+    color='white'
+    bg='primary'
+    css={{
+      borderBottom: '1px solid black',
+    }}
+    components={{
+      h1: {
+        fontSize: 48,
+        color: 'primary',
+      }
+    }}
+  />
+```
+
+Each layout component accepts the following props.
+
+Prop | Type | Description
+---|---|---
+`css` | object | CSS style object for the root element
+`components` | object | Object of nested CSS style objects to style child elements
+
+### Styled System Props
+
+The root element in a block layout can be styled with the following [Styled System][] props,
+each value can be derived from a value in the theme, or an array can be passed for mobile-first responsive styles. See the [Styled System Docs][styled system] for more.
+
+Prop | Type | Description
+---|---|---
+`color` | string | Foreground text color
+`bg` | string | Background color
+`fontSize` | number or array | Base font size
+`fontFamily` | string | Base font family
+`fontWeight` | string | Base font weight
+`lineHeight` | string | Base line height
+`p` | number or array | Padding
+`pt` | number or array | Padding top
+`pr` | number or array | Padding right
+`pb` | number or array | Padding bottom
+`pl` | number or array | Padding left
+`px` | number or array | Padding left and right
+`py` | number or array | Padding top and bottom
+`m` | number or array | Margin
+`mt` | number or array | Margin top
+`mr` | number or array | Margin right
+`mb` | number or array | Margin bottom
+`ml` | number or array | Margin left
+`mx` | number or array | Margin left and right
+`my` | number or array | Margin top and bottom
+
+### Child Elements
+
+Each layout component expects certain child elements to be present, but remains loose in interpretation.
+For example, the `Banner` component expects one image to be present, but will still render without an image and will only use the first image as the background image.
+Because of this approach, some results may seem unexpected, so please [open an issue][issues] if you have any questions.
+
+[issues]: https://github.com/jxnblk/mdx-blocks/issues/
+
+### Buttons
+
+Since markdown does not include syntax to distinguish between inline text links and links that are styled to look like buttons,
+MDX Blocks uses a convention (or hack) to specify links that are styled as buttons.
+To render a link that styled like a button, add a `button` title attribute to any link.
+
+```mdx
+// renders a text link
+[Beep](/beep)
+
+// renders a link styled as a button
+[Boop](/boop 'button')
+```
+
+## Bar
+
+The `Bar` aligns elements horizontally and is meant for navbars and toolbars.
+
+```mdx
+import { Bar } from 'mdx-blocks'
+export default props =>
+  <Bar
+    {...props}
+  />
+
+# [Hello](/)
+
+- [Beep](/beep)
+- [Boop](/boop)
+```
+
+## Banner
+
+The `Banner` component pulls images out to be used as background images and centers the rest of the content.
+
+```mdx
+import { Banner } from 'mdx-blocks'
+export default props =>
+  <Banner
+    {...props}
+  />
+
+![background image](background.jpg)
+
+# Neat!
+```
+
+## Cards
+
+The `Cards` component splits child elements by images and creates a tiled layout.
+
+```mdx
+import { Cards } from 'mdx-blocks'
+export default props =>
+  <Cards
+    {...props}
+  />
+
+![](kitten.jpg)
+
+## Kitten Card
+
+Meow
+
+![](puppy.jpg)
+
+## Puppy Card
+
+Woof
+```
+
+The `Cards` component accepts a `widths` prop to alter the width of the cards responsively.
+It uses the Styled System array value convention to apply width values with a mobile-first responsive approach.
+
+```mdx
+import { Cards } from 'mdx-blocks'
+export default props =>
+  <Cards
+    {...props}
+    widths={[
+      1,    // 100% width for the smallest viewport widths
+      1/2,  // 50% width at the first breakpoint
+      1/4   // 25% width at the next breakpoint
+    ]}
+  />
+```
+
+## Center
+
+The `Center` component centers text and can be used like a banner without a background image.
+
+```mdx
+import { Center } from 'mdx-blocks'
+export default props =>
+  <Center
+    {...props}
+  />
+
+## This is Centered
+```
+
+## Columns
+
+The `Columns` component aligns child elements horizontally and splits them into columns of equal width.
+
+```mdx
+import { Columns } from 'mdx-blocks'
+export default props =>
+  <Columns
+    {...props}
+  />
+
+- Meow
+- Purr
+- Scratch
+
+
+- Woof
+- Bark
+- Lick
+```
+
+## Content
+
+The `Content` component centers long-form content in the middle of the page.
+
+```mdx
+import { Content } from 'mdx-blocks'
+export default Content
+
+## Content Goes Here
+```
+
+## Split
+
+The `Split` component pulls images out and arranges them horizontally to the right of the content.
+
+```mdx
+import { Split } from 'mdx-blocks'
+export default props =>
+  <Split
+    {...props}
+  />
+
+## This will be on the left
+
+This will also be on the left
+
+![right-side](image.jpg)
+```
+
+## Tiles
+
+The `Tiles` component works similarly to the [`Cards`](#cards) component, but splits content by headings.
+
+```mdx
+import { Tiles } from 'mdx-blocks'
+export default props =>
+  <Tiles
+    {...props}
+  />
+
+## Kitten
+
+Meow meow
+
+## Puppy
+
+Woof woof
+```
+
+Similar to the `Cards` component, the `Tiles` component accepts a `widths` prop to alter the width of the cards responsively.
+
+```mdx
+import { Tiles } from 'mdx-blocks'
+export default props =>
+  <Tiles
+    {...props}
+    widths={[ 1, 1/2, 1/4 ]}
+  />
+```
+
+## Functional API
+
+As an alternative to the JSX-based inline component syntax shown above, each component has a functional API that can be used without the need for JSX.
+
+```mdx
+// example functional API
+import { Banner } from 'mdx-blocks'
+export default Banner.props({
+  color: 'white',
+  bg: 'black',
+})
+```
+
+[styled system]: https://styled-system.com

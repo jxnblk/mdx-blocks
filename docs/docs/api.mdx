@@ -1,0 +1,170 @@
+import Layout from './layout'
+export default Layout
+
+# API
+
+## `BlocksProvider`
+
+The root context provider for MDX Blocks.
+
+**Props**
+
+- `theme`
+- `components`
+- `baseComponents`
+
+## Layout Components
+
+**Props**
+
+All layout components accept following props. See the [Layouts docs](/docs/layouts) for more.
+
+- `css`
+- `components`
+- `color`
+- `bg`
+- `fontSize`
+- `fontFamily`
+- `fontWeight`
+- `lineHeight`
+- `p`
+- `pt`
+- `pr`
+- `pb`
+- `pl`
+- `px`
+- `py`
+- `m`
+- `mt`
+- `mr`
+- `mb`
+- `ml`
+- `mx`
+- `my`
+
+### `Bar`
+
+Aligns child elements horizontally
+
+### `Banner`
+
+Uses the first child image as a background image and centers all non-image child elements
+
+### `Cards`
+
+Chunks child elements by images and creates a card-like layout
+
+**Props**
+
+- `widths`
+
+### `Center`
+
+Center aligns child elements
+
+### `Columns`
+
+Horizontally aligns child elements with each one given equal width
+
+### `Content`
+
+Horizontally centers content based on a max-width
+
+### `Split`
+
+Creates a horizontal layout with images on the right and all other child elements on the left
+
+### `Tiles`
+
+Chunks child elements by headings and creates a tiled layout
+
+**Props**
+
+- `widths`
+
+## Utility Components
+
+### `Block`
+
+Used internally as the root element of all layout components. Creates a nested React context for MDX components
+
+**Props**
+
+The `Block` component supplies the layout components with the props listed above.
+Additionally, a `baseComponents` prop can be used when creating custom layouts to set default styles for child elements.
+
+### `Box`
+
+A Styled System layout component used within layout components for more complex layout structures
+
+**Props**
+
+TK
+
+### `Styled`
+
+Primitive styled component that uses values from the MDX Blocks theming context
+
+## Utilities
+
+### `getType`
+
+Returns the `mdxType` of a child element
+
+### `isHeading`
+
+Returns true for strings that begin with `h`
+
+### `isImage`
+
+Returns true if the element is type `img`
+
+### `getImages`
+
+Returns a filtered array of child images
+
+### `getNonImages`
+
+Returns a filtered array of child elements that are not images
+
+### `getImageSource`
+
+Returns the first `props.src` from child images
+
+### `chunkElements`
+
+Chunks a flat array of children based on the `test` function
+
+## Internal APIs
+
+### `system`
+
+A utility built with Styled System that merges vanilla CSS style objects with Styles Sytem props
+
+### `theme`
+
+The default `theme` object used as a base for MDX Blocks theming
+
+### `components`
+
+The default components used as a base for MDX Blocks theming
+
+### `mergeComponents`
+
+Merges outer parent `components` objects and applies styles with CSS style objects
+
+### `mergeThemes`
+
+Deep merges an outer parent `theme` object with a theme provided via props
+
+### `Root`
+
+Adds root-level typographic styles based on the MDX Blocks theming context – used internally by the `BlocksProvider` component
+
+### `MDXStyle`
+
+Core context consumer/provider used internally to merge parent `theme` and `components` objects
+
+### `tags`
+
+An array of MDX component tag names used for creating the `Styled` primitive components

@@ -1,0 +1,69 @@
+import Layout from './layout'
+export default Layout
+
+# Creating Layouts
+
+Custom MDX Blocks layout components can be created to extend the styling capabilities beyond what's included in this library.
+A layout component consists of a nested `components` context along with root element styles and the ability to manipulate child elements.
+
+## Block
+
+The core component of MDX Blocks layouts is the `Block` component.
+This component should be used as the root of any custom layout component.
+
+```jsx
+// example custom layout
+import React from 'react'
+import { Block } from 'mdx-blocks'
+
+export default ({ children, ...props }) =>
+  <Block
+    {...props}
+    css={{
+      // add styles for the root element
+    }}
+    baseComponents={{
+      // add styles for child elements
+      h1: {
+        color: 'primary',
+      }
+    }}>
+    {children}
+  </Block>
+```
+
+## Box
+
+The `Box` component is a layout primitive that can be used to add internal layout structure to a block.
+It's similar to the [Rebass][] Box component and accepts Styled System props.
+
+```jsx
+// example with Box component
+import React from 'react'
+import { Block, Box } from 'mdx-blocks'
+
+export default ({ children, ...props }) =>
+  <Block {...props}>
+    <Box
+      maxWidth='container'
+      mx='auto'
+      p={4}>
+      {children}
+    </Box>
+  </Block>
+```
+
+[rebass]: https://rebassjs.org
+
+## Children Utilities
+
+One of the core features of MDX Blocks is the ability to manipulate `children` for styling purposes.
+MDX Blocks includes several utilities to help parse MDX child elements.
+
+- `getType(el)` returns the `mdxType` of a child element
+- `isHeading(tagName)` returns true for strings that begin with `h`
+- `isImage(el)` returns true if the element is type `img`
+- `getImages(children)` returns a filtered array of child images
+- `getNonImages(children)` returns a filtered array of child elements that are not images
+- `getImageSource(children)` returns the first `props.src` from child images
+- `chunkElements(test)(children)` chunks a flat array of children based on the `test` function
