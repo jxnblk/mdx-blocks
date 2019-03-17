@@ -36,6 +36,11 @@ export default props =>
         rel='stylesheet'
         href='https://fonts.googleapis.com/css?family=Poppins400:700:900|Roboto+Mono|Roboto400:600:700'
       />
+      <meta name='twitter:card' content='summary' />
+      <meta name='twitter:site' content='@jxnblk' />
+      <meta name='twitter:title' content='MDX Blocks' />
+      <meta name='twitter:description' content={pkg.description} />
+      <meta name='twitter:image' content='https://mdx-blocks.netlify.com/card.png' />
     </Helmet>
     <Header />
     <Banner />
