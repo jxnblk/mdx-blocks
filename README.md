@@ -1,4 +1,6 @@
 
+![icon](https://mdx-blocks.netlify.com/icon.png)
+
 # MDX Blocks
 
 A wild new way to build websites
