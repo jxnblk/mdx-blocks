@@ -4,6 +4,16 @@
 A wild new way to build websites
 **EXPERIMENTAL**
 
+[![build status][]][travis]
+[![version][]][npm]
+![MIT License][license]
+
+[build status]: https://flat.badgen.net/travis/jxnblk/mdx-blocks
+[version]: https://flat.badgen.net/npm/v/mdx-blocks
+[license]: https://flat.badgen.net/badge/license/MIT/blue
+[npm]: https://npmjs.com/package/mdx-blocks
+[travis]: https://travis-ci.org/jxnblk/mdx-blocks
+
 https://mdx-blocks.netlify.com
 
 ```sh
