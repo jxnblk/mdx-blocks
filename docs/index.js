@@ -34,7 +34,7 @@ export default props =>
       />
       <link
         rel='stylesheet'
-        href='https://fonts.googleapis.com/css?family=Poppins400:700:900|Roboto+Mono|Roboto400:600:700'
+        href='https://fonts.googleapis.com/css?family=Poppins:400,700,900|Roboto+Mono'
       />
       <meta name='twitter:card' content='summary' />
       <meta name='twitter:site' content='@jxnblk' />
