@@ -30,7 +30,7 @@ export default props =>
   <BlocksProvider
     baseComponents={{
       a: Link,
-      button: Link,
+      // button: Link,
     }}
     {...theme}>
     <Box

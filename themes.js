@@ -17,9 +17,7 @@ export const funk = {
     },
   },
   components: {
-    button: {
-      fontWeight: 'bold',
-    }
+    // button: { fontWeight: 'bold', }
   },
   googleFont: 'https://fonts.googleapis.com/css?family=Poppins400:700:900|Roboto+Mono',
 }
@@ -39,10 +37,7 @@ export const future = {
     }
   },
   components: {
-    button: {
-      fontWeight: 'bold',
-      color: 'background',
-    }
+    // button: { fontWeight: 'bold', color: 'background', }
   },
 }
 

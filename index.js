@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { ThemeProvider } from 'emotion-theming'
-import { MDXProvider, useMDXComponents } from '@mdx-js/tag'
+import { ComponentProvider, useComponents } from 'emotion-mdx'
 import {
   space,
   color,
@@ -71,7 +70,7 @@ export const system = style => props => {
 }
 
 // base theme
-export const theme = {
+export const baseTheme = {
   colors: {
     text: '#000',
     background: '#fff',
@@ -105,125 +104,79 @@ export const theme = {
   }
 }
 
-// base components
-const div = styled.div(system())
-
-const a = styled.a(system({
-  color: 'primary',
-  textDecoration: 'none',
-  '&:hover': {
-    color: 'secondary',
-    textDecoration: 'underline',
-  }
-}))
-
-// <a title='button'> or [](/ 'button') is converted to this component
-const button = styled.a(system({
-  display: 'inline-block',
-  alignSelf: 'center',
-  textDecoration: 'none',
-  px: 3,
-  py: 2,
-  color: 'white',
-  bg: 'primary',
-  borderRadius: 6,
-  '&:hover': {
-    bg: 'secondary',
-  }
-}))
-
-const img = styled.img({
-  maxWidth: '100%',
-  height: 'auto',
-})
-
-const heading = (tag, styles) =>
-  styled(tag)(system({
+const baseStyles = {
+  a: props => console.log(props) || props.title !== 'button' ? system({
+    color: 'primary',
+    textDecoration: 'none',
+    '&:hover': {
+      color: 'secondary',
+      textDecoration: 'underline',
+    }
+  })(props) : system({
+    display: 'inline-block',
+    alignSelf: 'center',
+    textDecoration: 'none',
+    px: 3,
+    py: 2,
+    color: 'white',
+    bg: 'primary',
+    borderRadius: 6,
+    '&:hover': {
+      bg: 'secondary',
+    }
+  })(props),
+  code: {
+    fontFamily: 'monospace',
+  },
+  inlineCode: {
+    fontFamily: 'monospace',
+  },
+  pre: {
+    fontFamily: 'monospace',
+    p: 3,
+    overflowX: 'auto',
+  },
+  h1: {
     fontFamily: 'heading',
     fontWeight: 'heading',
     lineHeight: 'heading',
-    ...styles
-  }))
-
-const h1 = heading('h1', { fontSize: 6 })
-const h2 = heading('h2', { fontSize: 5 })
-const h3 = heading('h3', { fontSize: 4 })
-const h4 = heading('h4', { fontSize: 3 })
-const h5 = heading('h5', { fontSize: 2 })
-const h6 = heading('h6', { fontSize: 1 })
-
-const code = styled.code(system({
-  fontFamily: 'monospace',
-}))
-
-const inlineCode = styled.code(system({
-  fontFamily: 'monospace',
-}))
-
-const pre = styled.pre(system({
-  fontFamily: 'monospace',
-  p: 3,
-  overflowX: 'auto',
-}))
-
-export const components = {
-  div,
-  a,
-  button,
-  img,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  code,
-  pre,
-  inlineCode,
+    fontSize: 6,
+  },
+  h2: {
+    fontFamily: 'heading',
+    fontWeight: 'heading',
+    lineHeight: 'heading',
+    fontSize: 5,
+  },
+  h3: {
+    fontFamily: 'heading',
+    fontWeight: 'heading',
+    lineHeight: 'heading',
+    fontSize: 4,
+  },
+  h4: {
+    fontFamily: 'heading',
+    fontWeight: 'heading',
+    lineHeight: 'heading',
+    fontSize: 3,
+  },
+  h5: {
+    fontFamily: 'heading',
+    fontWeight: 'heading',
+    lineHeight: 'heading',
+    fontSize: 2,
+  },
+  h6: {
+    fontFamily: 'heading',
+    fontWeight: 'heading',
+    lineHeight: 'heading',
+    fontSize: 1,
+  },
+  img: {
+    maxWidth: '100%',
+    height: 'auto',
+  },
 }
-
-const defaults = {
-  components,
-  theme
-}
-
-const createButtonLink = (Link, Button) => ({
-  title,
-  ...props
-}) =>
-  (title === 'button')
-    ? <Button {...props} />
-    : <Link title={title} {...props} />
-
-export const mergeComponents = (...overrides) => (base = {}) => {
-  const components = {
-    ...defaults.components,
-    ...base
-  }
-  overrides.forEach(obj => {
-    for (const key in obj) {
-      // const Component = base[key] || key
-      const override = obj[key]
-      if (!override) continue
-      if (typeof override === 'function'
-        || (override.$$typeof && override.render)) {
-        if (components[key].withComponent) {
-          components[key] = components[key].withComponent(override)
-        } else {
-          components[key] = styled(override)(system({}))
-        }
-      } else if (typeof override === 'object') {
-        components[key] = styled(components[key] || key)(system(override))
-      }
-    }
-  })
-  components.a = createButtonLink(components.a || 'a', components.button || components.a || 'a')
-  return components
-}
-
-export const mergeThemes = (...overrides) => base =>
-  merge({}, defaults.theme, base, ...overrides)
-
 
 export const Root = styled.div(system({
   fontFamily: 'body',
@@ -232,33 +185,25 @@ export const Root = styled.div(system({
   bg: 'background',
 }))
 
-export const MDXStyle = ({
-  components = {},
-  baseComponents = {},
-  theme = {},
-  ...props
-}) => {
-  return (
-    <ThemeProvider theme={mergeThemes(theme)}>
-      <MDXProvider components={mergeComponents(baseComponents, components)}>
-        {props.children}
-      </MDXProvider>
-    </ThemeProvider>
-  )
-}
-
 export const BlocksProvider = ({
   baseComponents,
   components,
   theme,
   ...props
 }) =>
-  <MDXStyle
-    theme={theme}
-    baseComponents={baseComponents}
-    components={components}>
-    <Root {...props} />
-  </MDXStyle>
+  <ComponentProvider
+    theme={baseTheme}
+    components={{
+    }}
+    styles={baseStyles}
+    transform={system}>
+    <ComponentProvider
+      theme={theme}
+      components={baseComponents}
+      styles={components}>
+      <Root {...props} />
+    </ComponentProvider>
+  </ComponentProvider>
 
 export const Box = styled.div({
   boxSizing: 'border-box',
@@ -280,14 +225,14 @@ export const Block = ({
   components,
   ...props
 }) =>
-  <MDXStyle
-    baseComponents={baseComponents}
-    components={components}>
+  // baseComponents={baseComponents}
+  <ComponentProvider
+    styles={merge({}, baseComponents, components)}>
     <Box
       data-block
       {...props}
     />
-  </MDXStyle>
+  </ComponentProvider>
 
 // util
 const PROP = 'mdxType'
@@ -359,9 +304,7 @@ export const Bar = ({ children, ...props }) =>
           color: 'inherit',
         }
       },
-      button: {
-        mx: 3,
-      }
+      // button: { mx: 3, }
     }}>
     {children}
   </Block>
@@ -558,7 +501,7 @@ export const Styled = React.forwardRef(({
   as = 'div',
   ...props
 }, ref) => {
-  const components = useMDXComponents()
+  const components = useComponents()
   const tag = components[as] || 'div'
   return React.createElement(tag, {
     ...props,
@@ -583,13 +526,13 @@ export const tags = [
   'pre',
   'code',
   'inlineCode',
-  'button',
+  // 'button',
   'div',
+  // todo: add the rest
 ]
 
 tags.forEach(tag => {
   Styled[tag] = React.forwardRef((props, ref) => <Styled ref={ref} as={tag} {...props} />)
 })
 
-// todo
 // - [ ] MediaObjects layout
