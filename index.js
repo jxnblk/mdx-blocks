@@ -105,26 +105,27 @@ export const baseTheme = {
 }
 
 const baseStyles = {
-  a: props => console.log(props) || props.title !== 'button' ? system({
+  a: ({
     color: 'primary',
     textDecoration: 'none',
     '&:hover': {
       color: 'secondary',
       textDecoration: 'underline',
+    },
+    '&[title=button]': {
+      display: 'inline-block',
+      alignSelf: 'center',
+      textDecoration: 'none',
+      px: 3,
+      py: 2,
+      color: 'white',
+      bg: 'primary',
+      borderRadius: 6,
+      '&:hover': {
+        bg: 'secondary',
+      }
     }
-  })(props) : system({
-    display: 'inline-block',
-    alignSelf: 'center',
-    textDecoration: 'none',
-    px: 3,
-    py: 2,
-    color: 'white',
-    bg: 'primary',
-    borderRadius: 6,
-    '&:hover': {
-      bg: 'secondary',
-    }
-  })(props),
+  }),
   code: {
     fontFamily: 'monospace',
   },
@@ -193,13 +194,11 @@ export const BlocksProvider = ({
 }) =>
   <ComponentProvider
     theme={baseTheme}
-    components={{
-    }}
+    components={baseComponents}
     styles={baseStyles}
     transform={system}>
     <ComponentProvider
       theme={theme}
-      components={baseComponents}
       styles={components}>
       <Root {...props} />
     </ComponentProvider>
@@ -302,9 +301,11 @@ export const Bar = ({ children, ...props }) =>
         '&:hover': {
           textDecoration: 'none',
           color: 'inherit',
+        },
+        '&[title=button]': {
+          mx: 3,
         }
       },
-      // button: { mx: 3, }
     }}>
     {children}
   </Block>
@@ -526,7 +527,6 @@ export const tags = [
   'pre',
   'code',
   'inlineCode',
-  // 'button',
   'div',
   // todo: add the rest
 ]

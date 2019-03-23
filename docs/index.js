@@ -19,7 +19,6 @@ import { funk as theme } from '../themes'
 
 const components = {
   a: Link,
-  // button: Link,
 }
 
 export default props =>
