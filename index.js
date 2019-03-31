@@ -483,8 +483,11 @@ export const Tiles = ({
   </Block>
 
 // functional layouts
-const toFunction = Component => defaults => props =>
-  <Component {...defaults} {...props} />
+const toFunction = Component => defaults => ({ children, ...props }) =>
+  <Component
+    {...merge({}, defaults, props)}
+    children={children}
+  />
 
 Bar.props = toFunction(Bar)
 Banner.props = toFunction(Banner)
