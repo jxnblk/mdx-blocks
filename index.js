@@ -1,73 +1,14 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { ComponentProvider, useComponents } from 'emotion-mdx'
+import css from '@styled-system/css'
+import merge from 'lodash.merge'
+
 import {
   space,
-  color,
-  fontFamily,
-  fontSize,
-  fontWeight,
-  lineHeight,
   width,
-  maxWidth,
-  compose,
+  maxWidth
 } from 'styled-system'
-import merge from 'lodash.merge'
-import omit from 'lodash.omit'
-import pick from 'lodash.pick'
-
-const systemProps = [
-  'theme',
-  'm', 'mt', 'mr', 'mb', 'ml', 'mx', 'my',
-  'p', 'pt', 'pr', 'pb', 'pl', 'px', 'py',
-  'margin',
-  'marginTop',
-  'marginRight',
-  'marginBottom',
-  'marginLeft',
-  'padding',
-  'paddingTop',
-  'paddingRight',
-  'paddingBottom',
-  'paddingLeft',
-  'fontFamily',
-  'fontSize',
-  'fontWeight',
-  'lineHeight',
-  'color',
-  'bg',
-  'backgroundColor',
-]
-
-const css = props => omit(props, systemProps)
-
-const sx = compose(
-  css,
-  space,
-  color,
-  fontFamily,
-  fontSize,
-  fontWeight,
-  lineHeight
-)
-
-const filterEmpty = n => Object.keys(n).length > 0
-
-// recursively merges styled-system props and style objects
-export const system = style => props => {
-  // handle usage in styled components & in css prop
-  const theme = props.theme || props
-  const styleProps = pick(props, systemProps)
-  const styles = [ ...sx({ theme, ...style, ...styleProps }) ]
-  for (const key in style) {
-    const val = style[key]
-    if (!val || typeof val !== 'object') continue
-    styles.push({
-      [key]: system(val)(props)
-    })
-  }
-  return styles.filter(Boolean).filter(filterEmpty)
-}
 
 // base theme
 export const baseTheme = {
@@ -101,85 +42,85 @@ export const baseTheme = {
   },
   maxWidths: {
     container: 1024,
+  },
+
+  styles: {
+    a: {
+      color: 'primary',
+      textDecoration: 'none',
+      '&:hover': {
+        color: 'secondary',
+        textDecoration: 'underline',
+      },
+      '&[title=button]': {
+        display: 'inline-block',
+        alignSelf: 'center',
+        textDecoration: 'none',
+        px: 3,
+        py: 2,
+        color: 'white',
+        bg: 'primary',
+        borderRadius: 6,
+        '&:hover': {
+          bg: 'secondary',
+        }
+      }
+    },
+    code: {
+      fontFamily: 'monospace',
+    },
+    inlineCode: {
+      fontFamily: 'monospace',
+    },
+    pre: {
+      fontFamily: 'monospace',
+      p: 3,
+      overflowX: 'auto',
+    },
+    h1: {
+      fontFamily: 'heading',
+      fontWeight: 'heading',
+      lineHeight: 'heading',
+      fontSize: 6,
+    },
+    h2: {
+      fontFamily: 'heading',
+      fontWeight: 'heading',
+      lineHeight: 'heading',
+      fontSize: 5,
+    },
+    h3: {
+      fontFamily: 'heading',
+      fontWeight: 'heading',
+      lineHeight: 'heading',
+      fontSize: 4,
+    },
+    h4: {
+      fontFamily: 'heading',
+      fontWeight: 'heading',
+      lineHeight: 'heading',
+      fontSize: 3,
+    },
+    h5: {
+      fontFamily: 'heading',
+      fontWeight: 'heading',
+      lineHeight: 'heading',
+      fontSize: 2,
+    },
+    h6: {
+      fontFamily: 'heading',
+      fontWeight: 'heading',
+      lineHeight: 'heading',
+      fontSize: 1,
+    },
+    img: {
+      maxWidth: '100%',
+      height: 'auto',
+    },
   }
 }
 
-const baseStyles = {
-  a: ({
-    color: 'primary',
-    textDecoration: 'none',
-    '&:hover': {
-      color: 'secondary',
-      textDecoration: 'underline',
-    },
-    '&[title=button]': {
-      display: 'inline-block',
-      alignSelf: 'center',
-      textDecoration: 'none',
-      px: 3,
-      py: 2,
-      color: 'white',
-      bg: 'primary',
-      borderRadius: 6,
-      '&:hover': {
-        bg: 'secondary',
-      }
-    }
-  }),
-  code: {
-    fontFamily: 'monospace',
-  },
-  inlineCode: {
-    fontFamily: 'monospace',
-  },
-  pre: {
-    fontFamily: 'monospace',
-    p: 3,
-    overflowX: 'auto',
-  },
-  h1: {
-    fontFamily: 'heading',
-    fontWeight: 'heading',
-    lineHeight: 'heading',
-    fontSize: 6,
-  },
-  h2: {
-    fontFamily: 'heading',
-    fontWeight: 'heading',
-    lineHeight: 'heading',
-    fontSize: 5,
-  },
-  h3: {
-    fontFamily: 'heading',
-    fontWeight: 'heading',
-    lineHeight: 'heading',
-    fontSize: 4,
-  },
-  h4: {
-    fontFamily: 'heading',
-    fontWeight: 'heading',
-    lineHeight: 'heading',
-    fontSize: 3,
-  },
-  h5: {
-    fontFamily: 'heading',
-    fontWeight: 'heading',
-    lineHeight: 'heading',
-    fontSize: 2,
-  },
-  h6: {
-    fontFamily: 'heading',
-    fontWeight: 'heading',
-    lineHeight: 'heading',
-    fontSize: 1,
-  },
-  img: {
-    maxWidth: '100%',
-    height: 'auto',
-  },
-}
-
-export const Root = styled.div(system({
+export const Root = styled.div(css({
   fontFamily: 'body',
   lineHeight: 'body',
   color: 'text',
@@ -187,50 +128,35 @@ export const Root = styled.div(system({
 }))
 
 export const BlocksProvider = ({
-  baseComponents,
-  components,
   theme,
+  styles,
+  components,
   ...props
 }) =>
   <ComponentProvider
-    theme={baseTheme}
-    components={baseComponents}
-    styles={baseStyles}
-    transform={system}>
-    <ComponentProvider
-      theme={theme}
-      styles={components}>
-      <Root {...props} />
-    </ComponentProvider>
+    theme={merge({}, baseTheme, theme, { styles })}
+    components={components}
+    transform={css}>
+    <Root {...props} />
   </ComponentProvider>
 
-export const Box = styled.div({
+export const Box = styled('div')(css({
   boxSizing: 'border-box',
   minWidth: 0,
-},
+}),
   space,
-  color,
   width,
-  maxWidth,
-  fontSize,
-  fontFamily,
-  fontWeight,
-  lineHeight,
-  props => props.css
+  maxWidth
 )
 
 export const Block = ({
-  baseComponents, // what should this be named?
-  components,
+  defaultStyles,
+  styles,
   ...props
 }) =>
-  // baseComponents={baseComponents}
   <ComponentProvider
-    styles={merge({}, baseComponents, components)}>
-    <Box
-      data-block
-      {...props}
-    />
+    theme={{ styles: merge({}, defaultStyles, styles) }}>
+    <Box data-block {...props} />
   </ComponentProvider>
 
 // util
@@ -277,7 +203,7 @@ export const Bar = ({ children, ...props }) =>
       alignItems: 'center',
       justifyContent: 'space-between',
     }}
-    baseComponents={{
+    defaultStyles={{
       h1: {
         m: 0,
         fontSize: 'inherit',
@@ -386,7 +312,7 @@ export const Columns = ({
   <Block
     {...props}
     data-columns
-    baseComponents={{
+    defaultStyles={{
       ul: {
         listStyle: 'none',
         padding: 0,

@@ -23,8 +23,8 @@ const components = {
 
 export default props =>
   <BlocksProvider
-    baseComponents={components}
-    {...theme}>
+    components={components}
+    theme={theme}>
     <Helmet>
       <title>MDX Blocks</title>
       <meta

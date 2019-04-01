@@ -11,7 +11,7 @@ export default props => {
     <BlocksProvider
       {...themes.future}
       py={4}
-      components={{
+      styles={{
         h1: {
           color: 'orange',
         },

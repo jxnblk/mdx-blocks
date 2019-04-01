@@ -2,7 +2,7 @@ import React from 'react'
 import { Rects } from './rects'
 import { funk } from '../../themes'
 
-const { colors } = funk.theme
+const { colors } = funk
 colors.yellow = '#ec0'
 
 export default ({
