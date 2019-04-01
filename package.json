@@ -18,7 +18,7 @@
     "@mdx-js/mdx": "^1.0.0-alpha.17",
     "@mdx-js/react": "^1.0.0-alpha.17",
     "@mdx-js/tag": "^1.0.0-alpha.6",
-    "@styled-system/css": "^1.0.2",
+    "@styled-system/css": "^1.0.3",
     "emotion-mdx": "^1.0.0-4",
     "emotion-theming": "^10.0.9",
     "lodash.merge": "^4.6.1",
