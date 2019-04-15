@@ -1,7 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { matchers } from 'jest-emotion'
-import { useMDXComponents } from '@mdx-js/tag'
+import { useMDXComponents } from '@mdx-js/react'
 import styled from '@emotion/styled'
 import { withTheme } from 'emotion-theming'
 import {
