@@ -75,7 +75,7 @@ export default props =>
   />
 ```
 
-Layout components also accept a `css` prop and a custom `components` prop to override styles contextually within a block. The component style objects also accept Styled System props.
+Layout components also accept a `css` prop and a custom `styles` prop to override styles contextually within a block. The component style objects also accept Styled System props.
 
 ```mdx
 // example banner.mdx
@@ -96,7 +96,7 @@ import { Banner } from 'mdx-blocks'
 export default props =>
   <Banner
     {...props}
-    components={{
+    styles={{
       // styles for child elements
       h1: {
         color: 'primary',

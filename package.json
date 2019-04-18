@@ -17,13 +17,10 @@
     "@emotion/styled": "^10.0.10",
     "@mdx-js/mdx": "^1.0.5",
     "@mdx-js/react": "^1.0.2",
-    "@styled-system/css": "^1.0.3",
-    "emotion-mdx": "^1.0.0-6",
     "emotion-theming": "^10.0.10",
     "lodash.merge": "^4.6.1",
-    "lodash.omit": "^4.5.0",
-    "lodash.pick": "^4.4.0",
-    "styled-system": "^4.1.0"
+    "styled-system": "^4.1.0",
+    "theme-ui": "0.0.8"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.3",

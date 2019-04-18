@@ -6,7 +6,7 @@ export default Layout
 Themes in MDX Blocks consist of two parts:
 
 - `theme` (object) a [Styled System theme][theme specification] object
-- `components` (object) an object of MDX components or component styles, with support for [Styled System][] props
+- `theme.styles` (object) component styles, with support for [Styled System][] props
 
 MDX Blocks includes a base theme by default that has minimal styling and is intended to make customization easier.
 
@@ -34,28 +34,27 @@ Currently the following themes are available:
 
 ## Components Object
 
-The `components` object in MDX Blocks maps to MDX components and can be comprised of either actual React components or CSS style objects.
+The `components` object in MDX Blocks maps to MDX components
 
 ```jsx
 components: {
-  // example with React component
   h1: props => <h1 {...props} />,
-  // example with CSS style object
-  h2: {
-    color: 'tomato',
-  }
 }
 ```
 
-When using style objects for components, [Styled System][] props can be used for color, spacing, and typography, allowing you to use values from the `theme` object.
+## Styles Object
+
+[Styled System][] props can be used for color, spacing, and typography, allowing you to use values from the `theme` object.
 For example, the following picks up font size and colors from the theme:
 
 ```js
-components: {
-  h1: {
-    fontSize: 6,
-    color: 'primary',
-  },
+theme: {
+  styles: {
+    h1: {
+      fontSize: 6,
+      color: 'primary',
+    },
+  }
 }
 ```
 
@@ -72,8 +71,8 @@ components: {
 
 ## Layout Blocks
 
-Each layout component can accept the same `components` object type to create contextual style changes on a per-block basis.
-These nested blocks will inherit components from the parent `BlocksProvider` component.
+Each layout component accepts a `styles` prop to create contextual style changes on a per-block basis.
+These nested blocks will inherit components and styles from the parent `BlocksProvider` component.
 
 [styled system]: https://styled-system.com
 [theme specification]: https://styled-system.com/theme-specification

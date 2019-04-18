@@ -1,14 +1,13 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { ComponentProvider, useComponents } from 'emotion-mdx'
-import css from '@styled-system/css'
-import merge from 'lodash.merge'
-
+import { ComponentProvider, css } from 'theme-ui'
 import {
-  space,
   width,
   maxWidth
 } from 'styled-system'
+import merge from 'lodash.merge'
+
+export { Styled } from 'theme-ui'
 
 // base theme
 export const baseTheme = {
@@ -135,8 +134,7 @@ export const BlocksProvider = ({
 }) =>
   <ComponentProvider
     theme={merge({}, baseTheme, theme, { styles })}
-    components={components}
-    transform={css}>
+    components={components}>
     <Root {...props} />
   </ComponentProvider>
 
@@ -144,7 +142,6 @@ export const Box = styled('div')(css({
   boxSizing: 'border-box',
   minWidth: 0,
 }),
-  space,
   width,
   maxWidth
 )
@@ -423,45 +420,5 @@ Columns.props = toFunction(Columns)
 Content.props = toFunction(Content)
 Split.props = toFunction(Split)
 Tiles.props = toFunction(Tiles)
-
-// primitive components
-// can be used outside of an MDX file
-// but still retain the theme styles
-export const Styled = React.forwardRef(({
-  as = 'div',
-  ...props
-}, ref) => {
-  const components = useComponents()
-  const tag = components[as] || 'div'
-  return React.createElement(tag, {
-    ...props,
-    ref
-  })
-})
-
-export const tags = [
-  'h1',
-  'h2',
-  'h3',
-  'h4',
-  'h5',
-  'h6',
-  'p',
-  'ul',
-  'ol',
-  'li',
-  'img',
-  'a',
-  'blockquote',
-  'pre',
-  'code',
-  'inlineCode',
-  'div',
-  // todo: add the rest
-]
-
-tags.forEach(tag => {
-  Styled[tag] = React.forwardRef((props, ref) => <Styled ref={ref} as={tag} {...props} />)
-})
 
 // - [ ] MediaObjects layout
