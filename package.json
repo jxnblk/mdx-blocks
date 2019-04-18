@@ -40,6 +40,9 @@
     "coverageReporters": [
       "lcov",
       "html"
+    ],
+    "transformIgnorePatterns": [
+      "/node_modules/(?!theme-ui).+\\.js$"
     ]
   }
 }
