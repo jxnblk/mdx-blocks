@@ -1,153 +1,114 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { matchers } from 'jest-emotion'
-import { useMDXComponents } from '@mdx-js/tag'
-import styled from '@emotion/styled'
-import { withTheme } from 'emotion-theming'
+import { mdx } from '@mdx-js/react'
 import {
-  system,
-  mergeComponents,
-  mergeThemes,
-  Root,
-  MDXStyle,
+  BlocksProvider,
+  Block,
+  getType,
+  isHeading,
+  isImage,
+  getImages,
+  getNonImages,
+  getImageSource,
+  chunkElements,
 } from './index'
 
 expect.extend(matchers)
 
-describe('system', () => {
-  test('returns an array of style objects', () => {
-    const style = system({
-      color: 'tomato'
-    })({})
-    expect(Array.isArray(style)).toBe(true)
-    expect(style).toMatchSnapshot()
-  })
-
-  test('returns styles based on theme values', () => {
-    const [ a ] = system({
-      fontSize: 0
-    })({
-      theme: {
-        fontSizes: [ 33 ]
+describe('BlocksProvider', () => {
+  test('provides MDX context', () => {
+    const el = mdx(BlocksProvider, {
+      components: {
+        h1: props => <h2 {...props} />
       }
-    })
-    expect(a.fontSize).toBe('33px')
-  })
-
-  test('returns nested styles', () => {
-    const [ a, b ] = system({
-      ':hover': {
-        fontSize: 0
-      }
-    })({
-      theme: {
-        fontSizes: [ 33 ]
-      }
-    })
-    expect(b[':hover'][0].fontSize).toBe('33px')
-  })
-})
-
-describe('mergeComponents', () => {
-  test.skip('merges components', () => {
-    // figure out how to accurately test this with emotion styled
-    const a = {
-      h1: styled.h1({ color: 'tomato' }),
-      h2: styled.h2({ color: 'tomato' })
-    }
-    const b = {
-      h1: styled.h1({ color: 'red' })
-    }
-    const merged = mergeComponents(b)(a)
-    const h1 = renderer.create(React.createElement(merged.h1)).toJSON()
-    const h2 = renderer.create(React.createElement(merged.h2)).toJSON()
-    expect(typeof merged).toBe('object')
-    expect(h1).toHaveStyleRule('color', 'red')
-    expect(h2).toHaveStyleRule('color', 'tomato')
-  })
-
-  test('merges component style objects', () => {
-    const a = {
-      h1: props => <h1 {...props} />,
-    }
-    const b = {
-      h1: {
-        color: 'tomato',
-      }
-    }
-    const merged = mergeComponents(b)(a)
-    const h1 = renderer.create(React.createElement(merged.h1)).toJSON()
-    expect(h1).toHaveStyleRule('color', 'tomato')
-  })
-})
-
-describe('mergeThemes', () => {
-  test('merges themes', () => {
-    const merged = mergeThemes({
-      colors: { red: 'red' }
-    })({
-      colors: { blue: 'blue' }
-    })
-    expect(merged.colors.red).toBe('red')
-    expect(merged.colors.blue).toBe('blue')
-  })
-})
-
-describe('MDXStyle', () => {
-  test('provides context with base theme and components', () => {
-    let theme
-    let components
-    const Emotion = withTheme(props => {
-      theme = props.theme
-      return false
-    })
-    const MDX = props => {
-      components = useMDXComponents()
-      return false
-    }
-    const el = (
-      <MDXStyle>
-        <Emotion />
-        <MDX />
-      </MDXStyle>
+    },
+      mdx('h1', null, 'Hello')
     )
-    const tree = renderer.create(el)
-    expect(typeof theme).toBe('object')
-    expect(typeof components).toBe('object')
+    const json = renderer.create(el).toJSON()
+    const [ h1 ] = json.children
+    expect(h1.type).toBe('h2')
   })
+})
 
-  test('provides configured context', () => {
-    let theme
-    let components
-    const Emotion = withTheme(props => {
-      theme = props.theme
-      return false
-    })
-    const MDX = props => {
-      components = useMDXComponents()
-      return false
-    }
-    const el = (
-      <MDXStyle
-        theme={{
-          colors: {
-            beep: 'boop'
-          }
-        }}
-        components={{
-          hr: {
-            borderColor: 'tomato'
-          }
-        }}>
-        <Emotion />
-        <MDX />
-      </MDXStyle>
-    )
-    const tree = renderer.create(el)
-    const hr = renderer.create(
-      React.createElement(components.hr)
+describe('Block', () => {
+  test('renders', () => {
+    const json = renderer.create(
+      mdx(Block, { p: 3, bg: 'tomato' })
     ).toJSON()
-    expect(hr).toHaveStyleRule('border-color', 'tomato')
-    expect(theme.colors.beep).toBe('boop')
+    expect(json).toMatchSnapshot()
+  })
+})
+
+describe('util', () => {
+  test('getType returns element type', () => {
+    const type = getType(
+      mdx('h2', null, 'hi')
+    )
+    expect(type).toBe('h2')
+  })
+
+  test('isHeading returns true', () => {
+    const is = isHeading('h1')
+    expect(is).toBe(true)
+  })
+
+  test('isHeading returns false', () => {
+    const is = isHeading('hr')
+    expect(is).toBe(false)
+  })
+
+  test('isImage returns true', () => {
+    const is = isImage(
+      mdx('img', { src: 'kitten.png' })
+    )
+    expect(is).toBe(true)
+  })
+
+  test('isImage returns false', () => {
+    const is = isImage(
+      mdx('h2')
+    )
+    expect(is).toBe(false)
+  })
+
+  test('getImages returns images', () => {
+    const images = getImages([
+      mdx('h2'),
+      mdx('h3'),
+      mdx('img', { src: 'kitten.png' }),
+      mdx('img', { src: 'puppy.png' }),
+    ])
+    expect(images.length).toBe(2)
+  })
+
+  test('getNonImages returns other elements', () => {
+    const elements = getNonImages([
+      mdx('h3'),
+      mdx('img', { src: 'kitten.png' }),
+      mdx('img', { src: 'puppy.png' }),
+    ])
+    expect(elements.length).toBe(1)
+    expect(elements[0].props.mdxType).toBe('h3')
+  })
+
+  test('getImageSource returns first image src', () => {
+    const src = getImageSource([
+      mdx('h2'),
+      mdx('h3'),
+      mdx('img', { src: 'kitten.png' }),
+      mdx('img', { src: 'puppy.png' }),
+    ])
+    expect(src).toBe('kitten.png')
+  })
+
+  test('chunkElements splits elements', () => {
+    const chunks = chunkElements(type => type === 'img')([
+      mdx('img', { src: 'kitten.png' }),
+      mdx('h2'),
+      mdx('img', { src: 'puppy.png' }),
+      mdx('h3'),
+    ])
+    expect(chunks.length).toBe(2)
   })
 })

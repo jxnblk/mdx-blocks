@@ -14,8 +14,8 @@ const mobile = '@media screen and (max-width:40em)'
 
 const theme = {
   ...themes.funk,
-  components: {
-    ...themes.funk.components,
+  styles: {
+    ...themes.funk.styles,
     inlineCode: {
       color: 'primary',
     },
@@ -28,11 +28,10 @@ const theme = {
 
 export default props =>
   <BlocksProvider
-    baseComponents={{
+    theme={theme}
+    components={{
       a: Link,
-      button: Link,
-    }}
-    {...theme}>
+    }}>
     <Box
       css={{
         minHeight: '100vh',
@@ -59,7 +58,7 @@ export default props =>
             overflowY: 'auto',
             WebkitOverflowScrolling: 'touch',
           }}
-          baseComponents={{
+          styles={{
             ul: {
               listStyle: 'none',
               m: 0,
@@ -73,6 +72,7 @@ export default props =>
               display: 'block',
               fontWeight: 'bold',
               px: 3,
+              // py: 2,
               py: [1, 2],
               '&:hover': {
                 textDecoration: 'none',
@@ -82,8 +82,7 @@ export default props =>
                 color: 'highlight',
               }
             }
-          }}
-        >
+          }}>
           <Sidebar />
         </Block>
         <Box width={1}>

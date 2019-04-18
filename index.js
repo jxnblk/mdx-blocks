@@ -1,77 +1,16 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { ThemeProvider } from 'emotion-theming'
-import { MDXProvider, useMDXComponents } from '@mdx-js/tag'
+import { ComponentProvider, css } from 'theme-ui'
 import {
-  space,
-  color,
-  fontFamily,
-  fontSize,
-  fontWeight,
-  lineHeight,
   width,
-  maxWidth,
-  compose,
+  maxWidth
 } from 'styled-system'
 import merge from 'lodash.merge'
-import omit from 'lodash.omit'
-import pick from 'lodash.pick'
 
-const systemProps = [
-  'theme',
-  'm', 'mt', 'mr', 'mb', 'ml', 'mx', 'my',
-  'p', 'pt', 'pr', 'pb', 'pl', 'px', 'py',
-  'margin',
-  'marginTop',
-  'marginRight',
-  'marginBottom',
-  'marginLeft',
-  'padding',
-  'paddingTop',
-  'paddingRight',
-  'paddingBottom',
-  'paddingLeft',
-  'fontFamily',
-  'fontSize',
-  'fontWeight',
-  'lineHeight',
-  'color',
-  'bg',
-  'backgroundColor',
-]
-
-const css = props => omit(props, systemProps)
-
-const sx = compose(
-  css,
-  space,
-  color,
-  fontFamily,
-  fontSize,
-  fontWeight,
-  lineHeight
-)
-
-const filterEmpty = n => Object.keys(n).length > 0
-
-// recursively merges styled-system props and style objects
-export const system = style => props => {
-  // handle usage in styled components & in css prop
-  const theme = props.theme || props
-  const styleProps = pick(props, systemProps)
-  const styles = [ ...sx({ theme, ...style, ...styleProps }) ]
-  for (const key in style) {
-    const val = style[key]
-    if (!val || typeof val !== 'object') continue
-    styles.push({
-      [key]: system(val)(props)
-    })
-  }
-  return styles.filter(Boolean).filter(filterEmpty)
-}
+export { Styled } from 'theme-ui'
 
 // base theme
-export const theme = {
+export const baseTheme = {
   colors: {
     text: '#000',
     background: '#fff',
@@ -102,192 +41,120 @@ export const theme = {
   },
   maxWidths: {
     container: 1024,
-  }
-}
+  },
 
-// base components
-const div = styled.div(system())
-
-const a = styled.a(system({
-  color: 'primary',
-  textDecoration: 'none',
-  '&:hover': {
-    color: 'secondary',
-    textDecoration: 'underline',
-  }
-}))
-
-// <a title='button'> or [](/ 'button') is converted to this component
-const button = styled.a(system({
-  display: 'inline-block',
-  alignSelf: 'center',
-  textDecoration: 'none',
-  px: 3,
-  py: 2,
-  color: 'white',
-  bg: 'primary',
-  borderRadius: 6,
-  '&:hover': {
-    bg: 'secondary',
-  }
-}))
-
-const img = styled.img({
-  maxWidth: '100%',
-  height: 'auto',
-})
-
-const heading = (tag, styles) =>
-  styled(tag)(system({
-    fontFamily: 'heading',
-    fontWeight: 'heading',
-    lineHeight: 'heading',
-    ...styles
-  }))
-
-const h1 = heading('h1', { fontSize: 6 })
-const h2 = heading('h2', { fontSize: 5 })
-const h3 = heading('h3', { fontSize: 4 })
-const h4 = heading('h4', { fontSize: 3 })
-const h5 = heading('h5', { fontSize: 2 })
-const h6 = heading('h6', { fontSize: 1 })
-
-const code = styled.code(system({
-  fontFamily: 'monospace',
-}))
-
-const inlineCode = styled.code(system({
-  fontFamily: 'monospace',
-}))
-
-const pre = styled.pre(system({
-  fontFamily: 'monospace',
-  p: 3,
-  overflowX: 'auto',
-}))
-
-export const components = {
-  div,
-  a,
-  button,
-  img,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  code,
-  pre,
-  inlineCode,
-}
-
-const defaults = {
-  components,
-  theme
-}
-
-const createButtonLink = (Link, Button) => ({
-  title,
-  ...props
-}) =>
-  (title === 'button')
-    ? <Button {...props} />
-    : <Link title={title} {...props} />
-
-export const mergeComponents = (...overrides) => (base = {}) => {
-  const components = {
-    ...defaults.components,
-    ...base
-  }
-  overrides.forEach(obj => {
-    for (const key in obj) {
-      // const Component = base[key] || key
-      const override = obj[key]
-      if (!override) continue
-      if (typeof override === 'function'
-        || (override.$$typeof && override.render)) {
-        if (components[key].withComponent) {
-          components[key] = components[key].withComponent(override)
-        } else {
-          components[key] = styled(override)(system({}))
+  styles: {
+    a: {
+      color: 'primary',
+      textDecoration: 'none',
+      '&:hover': {
+        color: 'secondary',
+        textDecoration: 'underline',
+      },
+      '&[title=button]': {
+        display: 'inline-block',
+        alignSelf: 'center',
+        textDecoration: 'none',
+        px: 3,
+        py: 2,
+        color: 'white',
+        bg: 'primary',
+        borderRadius: 6,
+        '&:hover': {
+          bg: 'secondary',
         }
-      } else if (typeof override === 'object') {
-        components[key] = styled(components[key] || key)(system(override))
       }
-    }
-  })
-  components.a = createButtonLink(components.a || 'a', components.button || components.a || 'a')
-  return components
+    },
+    code: {
+      fontFamily: 'monospace',
+    },
+    inlineCode: {
+      fontFamily: 'monospace',
+    },
+    pre: {
+      fontFamily: 'monospace',
+      p: 3,
+      overflowX: 'auto',
+    },
+    h1: {
+      fontFamily: 'heading',
+      fontWeight: 'heading',
+      lineHeight: 'heading',
+      fontSize: 6,
+    },
+    h2: {
+      fontFamily: 'heading',
+      fontWeight: 'heading',
+      lineHeight: 'heading',
+      fontSize: 5,
+    },
+    h3: {
+      fontFamily: 'heading',
+      fontWeight: 'heading',
+      lineHeight: 'heading',
+      fontSize: 4,
+    },
+    h4: {
+      fontFamily: 'heading',
+      fontWeight: 'heading',
+      lineHeight: 'heading',
+      fontSize: 3,
+    },
+    h5: {
+      fontFamily: 'heading',
+      fontWeight: 'heading',
+      lineHeight: 'heading',
+      fontSize: 2,
+    },
+    h6: {
+      fontFamily: 'heading',
+      fontWeight: 'heading',
+      lineHeight: 'heading',
+      fontSize: 1,
+    },
+    img: {
+      maxWidth: '100%',
+      height: 'auto',
+    },
+  }
 }
 
-export const mergeThemes = (...overrides) => base =>
-  merge({}, defaults.theme, base, ...overrides)
-
-
-export const Root = styled.div(system({
+export const Root = styled.div(css({
   fontFamily: 'body',
   lineHeight: 'body',
   color: 'text',
   bg: 'background',
 }))
 
-export const MDXStyle = ({
-  components = {},
-  baseComponents = {},
-  theme = {},
-  ...props
-}) => {
-  return (
-    <ThemeProvider theme={mergeThemes(theme)}>
-      <MDXProvider components={mergeComponents(baseComponents, components)}>
-        {props.children}
-      </MDXProvider>
-    </ThemeProvider>
-  )
-}
-
 export const BlocksProvider = ({
-  baseComponents,
-  components,
   theme,
+  styles,
+  components,
   ...props
 }) =>
-  <MDXStyle
-    theme={theme}
-    baseComponents={baseComponents}
+  <ComponentProvider
+    theme={merge({}, baseTheme, theme, { styles })}
     components={components}>
     <Root {...props} />
-  </MDXStyle>
+  </ComponentProvider>
 
-export const Box = styled.div({
+export const Box = styled('div')(css({
   boxSizing: 'border-box',
   minWidth: 0,
-},
-  space,
-  color,
+}),
   width,
-  maxWidth,
-  fontSize,
-  fontFamily,
-  fontWeight,
-  lineHeight,
-  props => props.css
+  maxWidth
 )
 
 export const Block = ({
-  baseComponents, // what should this be named?
-  components,
+  defaultStyles,
+  styles,
   ...props
 }) =>
-  <MDXStyle
-    baseComponents={baseComponents}
-    components={components}>
-    <Box
-      data-block
-      {...props}
-    />
-  </MDXStyle>
+  <ComponentProvider
+    theme={{ styles: merge({}, defaultStyles, styles) }}>
+    <Box data-block {...props} />
+  </ComponentProvider>
 
 // util
 const PROP = 'mdxType'
@@ -333,7 +200,7 @@ export const Bar = ({ children, ...props }) =>
       alignItems: 'center',
       justifyContent: 'space-between',
     }}
-    baseComponents={{
+    defaultStyles={{
       h1: {
         m: 0,
         fontSize: 'inherit',
@@ -357,11 +224,11 @@ export const Bar = ({ children, ...props }) =>
         '&:hover': {
           textDecoration: 'none',
           color: 'inherit',
+        },
+        '&[title=button]': {
+          mx: 3,
         }
       },
-      button: {
-        mx: 3,
-      }
     }}>
     {children}
   </Block>
@@ -442,7 +309,7 @@ export const Columns = ({
   <Block
     {...props}
     data-columns
-    baseComponents={{
+    defaultStyles={{
       ul: {
         listStyle: 'none',
         padding: 0,
@@ -554,45 +421,4 @@ Content.props = toFunction(Content)
 Split.props = toFunction(Split)
 Tiles.props = toFunction(Tiles)
 
-// primitive components
-// can be used outside of an MDX file
-// but still retain the theme styles
-export const Styled = React.forwardRef(({
-  as = 'div',
-  ...props
-}, ref) => {
-  const components = useMDXComponents()
-  const tag = components[as] || 'div'
-  return React.createElement(tag, {
-    ...props,
-    ref
-  })
-})
-
-export const tags = [
-  'h1',
-  'h2',
-  'h3',
-  'h4',
-  'h5',
-  'h6',
-  'p',
-  'ul',
-  'ol',
-  'li',
-  'img',
-  'a',
-  'blockquote',
-  'pre',
-  'code',
-  'inlineCode',
-  'button',
-  'div',
-]
-
-tags.forEach(tag => {
-  Styled[tag] = React.forwardRef((props, ref) => <Styled ref={ref} as={tag} {...props} />)
-})
-
-// todo
 // - [ ] MediaObjects layout

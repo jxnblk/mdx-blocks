@@ -11,7 +11,7 @@ The root context provider for MDX Blocks.
 
 - `theme`
 - `components`
-- `baseComponents`
+- `styles`
 
 ## Layout Components
 
@@ -91,7 +91,7 @@ Used internally as the root element of all layout components. Creates a nested R
 **Props**
 
 The `Block` component supplies the layout components with the props listed above.
-Additionally, a `baseComponents` prop can be used when creating custom layouts to set default styles for child elements.
+Additionally, a `defaultStyles` prop can be used when creating custom layouts to set default styles for child elements.
 
 ### `Box`
 
@@ -135,36 +135,4 @@ Returns the first `props.src` from child images
 
 Chunks a flat array of children based on the `test` function
 
-## Internal APIs
 
-### `system`
-
-A utility built with Styled System that merges vanilla CSS style objects with Styles Sytem props
-
-### `theme`
-
-The default `theme` object used as a base for MDX Blocks theming
-
-### `components`
-
-The default components used as a base for MDX Blocks theming
-
-### `mergeComponents`
-
-Merges outer parent `components` objects and applies styles with CSS style objects
-
-### `mergeThemes`
-
-Deep merges an outer parent `theme` object with a theme provided via props
-
-### `Root`
-
-Adds root-level typographic styles based on the MDX Blocks theming context – used internally by the `BlocksProvider` component
-
-### `MDXStyle`
-
-Core context consumer/provider used internally to merge parent `theme` and `components` objects
-
-### `tags`
-
-An array of MDX component tag names used for creating the `Styled` primitive components

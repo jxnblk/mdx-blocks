@@ -6,7 +6,7 @@ export default Banner.props({
   pl: [ 4, 4, '25%', '50%' ],
   color: 'white',
   bg: 'black',
-  components: {
+  styles: {
     h1: {
       'em': {
         fontStyle: 'normal',
@@ -18,12 +18,14 @@ export default Banner.props({
       m: 0,
       mb: 1,
     },
-    button: {
-      fontSize: 3,
-      my: 3,
-      px: 4,
-      py: 3,
-      fontWeight: 'bold',
+    a: {
+      '&[title=button]': {
+        fontSize: 3,
+        my: 3,
+        px: 4,
+        py: 3,
+        fontWeight: 'bold',
+      }
     }
   }
 })

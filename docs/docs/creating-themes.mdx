@@ -44,12 +44,13 @@ theme: {
 }
 ```
 
-## Components Object
+## Styles Object
 
-The `components` object corresponds to MDX components and can include either React components or CSS style objects with Styled System props.
+The `styles` object corresponds to MDX components
+and supports some Styled System props.
 See the [themes docs](/docs/themes) for more info.
 
-The `components` object consists of the following keys:
+The `styles` object consists of the following keys:
 
 - `h1`
 - `h2`
@@ -68,7 +69,6 @@ The `components` object consists of the following keys:
 - `code`
 - `inlineCode`
 - `hr`
-- `button` - special mdx-blocks component for links styled as buttons. See the [button docs][]
 
 Each CSS style object can be a mix of standard CSS syntax and the following Styled System props,
 which pick up values from the theme and can accept array values for mobile-first responsive styles:
@@ -95,6 +95,5 @@ which pick up values from the theme and can accept array values for mobile-first
 - `py`
 
 
-[button docs]: #!
 [themes module]: https://github.com/jxnblk/mdx-blocks/blob/master/themes.js
 [theme specification]: https://styled-system.com/theme-specification

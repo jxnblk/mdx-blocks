@@ -32,7 +32,7 @@ export default props =>
     css={{
       borderBottom: '1px solid black',
     }}
-    components={{
+    styles={{
       h1: {
         fontSize: 48,
         color: 'primary',
@@ -46,7 +46,7 @@ Each layout component accepts the following props.
 Prop | Type | Description
 ---|---|---
 `css` | object | CSS style object for the root element
-`components` | object | Object of nested CSS style objects to style child elements
+`styles` | object | Object of nested CSS style objects to style child elements
 
 ### Styled System Props
 
@@ -87,7 +87,7 @@ Because of this approach, some results may seem unexpected, so please [open an i
 ### Buttons
 
 Since markdown does not include syntax to distinguish between inline text links and links that are styled to look like buttons,
-MDX Blocks uses a convention (or hack) to specify links that are styled as buttons.
+MDX Blocks uses a convention (or hack) to style links as buttons.
 To render a link that styled like a button, add a `button` title attribute to any link.
 
 ```mdx
