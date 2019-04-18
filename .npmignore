@@ -5,3 +5,8 @@ babel.config.js
 test.js
 coverage
 __snapshots__
+CODE_OF_CONDUCT.md
+.travis.yml
+.DS_Store
+.travis.yml
+static
