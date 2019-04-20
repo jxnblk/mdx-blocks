@@ -1,6 +1,10 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
-import React from 'react'
+import React, {
+  useContext,
+  useState,
+  useEffect,
+} from 'react'
 import styled from '@emotion/styled'
 import { ComponentProvider, css } from 'theme-ui'
 import {
@@ -148,6 +152,66 @@ export const Box = styled('div')(css({
   maxWidth
 )
 
+// editable
+export const EditContext = React.createContext(null)
+
+let __id = 0
+const uuid = () => __id++
+
+const getBlockType = props => {
+  if (props['data-bar']) return 'bar'
+  if (props['data-banner']) return 'banner'
+  if (props['data-cards']) return 'cards'
+  if (props['data-center']) return 'center'
+  if (props['data-columns']) return 'columns'
+  if (props['data-content']) return 'content'
+  if (props['data-split']) return 'split'
+  if (props['data-tiles']) return 'tiles'
+}
+
+// edit pragma
+const blockJSX = (type, props, ...children) => {
+  const [ id, setID ] = useState()
+  const context = useContext(EditContext)
+  const { editing = {} } = context.state
+  // console.log('blockjsx', type, props)
+  // console.log('blockjsx context', context)
+
+  useEffect(() => {
+    const id = uuid()
+    setID(id)
+    context.dispatch({
+      type: 'register',
+      payload: {
+        [id]: {
+          id,
+          type: getBlockType(props),
+        }
+      },
+    })
+  }, [])
+  useEffect(() => {
+    if (!context.state.editing || context.state.editing.id !== id) return
+    context.dispatch({
+      type: 'edit',
+      payload: {
+        props
+      }
+    })
+  }, [])
+  props.onClick = e => {
+    context.dispatch({
+      type: 'edit',
+      payload: {
+        id,
+        props,
+      }
+    })
+  }
+
+  return jsx(type, props, ...children)
+}
+
 export const Block = ({
   defaultStyles,
   styles,
@@ -155,9 +219,13 @@ export const Block = ({
 }) =>
   <ComponentProvider
     theme={{ styles: merge({}, defaultStyles, styles) }}>
-    <Box data-block {...props} />
+    {blockJSX(Box, {
+      'data-block': true,
+      ...props
+    })}
   </ComponentProvider>
 
+  // <Box data-block {...props} />
 // util
 const PROP = 'mdxType'
 
