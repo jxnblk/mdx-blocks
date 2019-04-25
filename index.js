@@ -161,7 +161,7 @@ export const Block = ({
 // util
 const PROP = 'mdxType'
 
-export const getType = el => el.props[PROP]
+export const getType = el => (el.props && el.props[PROP]) || el.type
 export const isHeading = tag => /^h[1-6]/.test(tag)
 export const isImage = el => getType(el) === 'img' || el.type === 'img'
 export const getImages = children =>
@@ -189,6 +189,19 @@ export const chunkElements = test => children => {
     chunks.push(children)
   })
   return chunks
+}
+
+export const reduceChildren = children => {
+  const elements = {}
+  const arr = React.Children.toArray(children)
+  arr.forEach(child => {
+    const type = getType(child)
+    elements[type] = elements[type] || []
+    elements[type].push(child)
+  })
+  elements.omit = (...types) => arr
+    .filter(child => !types.includes(getType(child)))
+  return elements
 }
 
 // layout components
